@@ -2,12 +2,7 @@ import requests
 import os
 from bs4 import BeautifulSoup
 import pandas as pd
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-import time
-from pathlib import Path
-import pyperclip as pyc
+
 
 # find location of current file
 # (use 'os.path.dirname(__file__)' if using .py
