@@ -3,23 +3,25 @@ import os
 from bs4 import BeautifulSoup
 import pandas as pd
 
-
-# find location of current file
-# (use 'os.path.dirname(__file__)' if using .py
-# OR
-# 'os.getcwd() ' if using ipynb)
-
-
-# SELECT CSV FILE PATH AND LOAD DATA
 def data_from_willhaben(url):
     try:
         data = requests.get(url)            # request data
+        print(data.reason)
+    except requests.ConnectionError as e:
+        print("ERROR: Failed to establish connection")
+        return
     except:
         print("Paste URL for the Willhaben ad (https://www.willhaben.at): ")
         url = input()
-        data = requests.get(url)
+        try:
+            data = requests.get(url)
+        except requests.ConnectionError as e:
+            print(e)
+            return
+        
 
-    current_script_path = os.path.dirname(__file__)
+    # current_script_path = os.getcwd()               # .ipynb
+    current_script_path = os.path.dirname(__file__) # .py
 
     filename = os.path.join(current_script_path, '.\\ncbi.html')
     with open(filename, 'w+', encoding="utf-8") as f:
@@ -58,7 +60,7 @@ def data_from_willhaben(url):
     df[0:].to_clipboard(excel=True, sep=None, index=False, header=None)
 
 # test example
-# data_from_willhaben('https://www.willhaben.at/iad/immobilien/d/mietwohnungen/wien/wien-1050-margareten/zentagasse-zentrumsnahe-45m-altbaumiete-2-liftstock-4-jahre-befristet-studenten-bevorzugt-619573618/')
+# data_from_willhaben('https://www.willhaben/d/mietwohnungen/wien/wien-1050-margareten/traumhaft-sanierte-altbauwohnung-am-bacherplatz-622809329/')
 data_from_willhaben('')
 
 
