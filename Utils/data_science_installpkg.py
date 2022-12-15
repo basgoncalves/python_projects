@@ -9,7 +9,7 @@ import sys
 import pkg_resources
 
 Packages = ["numpy","requests","bs4","pandas","selenium",
-"webdriver-manager","matplotlib",'autopep8','tk','jupyter']
+"webdriver-manager","matplotlib",'autopep8','tk','jupyter','scipy']
 
 installed_packages = pkg_resources.working_set
 installed_packages_list = sorted(["%s==%s" % (i.key, i.version) for i in installed_packages])
