@@ -6,7 +6,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
-import pyperclip as pyc
 
 # find location of current file
 # (use 'os.path.dirname(__file__)' if using .py 
@@ -18,9 +17,15 @@ print(current_script_path)
 print("Paste the pubmed URL for the paper: ")
 url = input()
 
-print("requsting data from " + url)
+try:
+    print("requsting data from " + url)
+    data = requests.get(url)            # request data
+except:
+    print(url + ' does not exist')
+    url = r'https://pubmed.ncbi.nlm.nih.gov/36457193/'
+    print("requsting data from " + url)
+    data = requests.get(url)            # request data
 
-data = requests.get(url)            # request data
 
 filename = os.path.join(current_script_path, '.\\ncbi.html')
 with open(filename, 'w+', encoding="utf-8") as f:
@@ -50,5 +55,7 @@ data = {'Name': [names[0]],'year': [year], 'journal': [journal],
 df = pd.DataFrame(data)
 df[0:].to_clipboard(excel=True, sep=None, index=False, header=None)
 
-print(pyc.paste())
 print({'title': [title], 'doi': [doi]})
+
+last_name = names[0].rsplit(" ", 1)[1]
+print({(last_name + 'et al.')})
