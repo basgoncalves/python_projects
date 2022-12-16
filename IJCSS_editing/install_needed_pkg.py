@@ -8,7 +8,8 @@ import pkg_resources
 # .\install_needed_pkg.py
 # .\virtual_env\Scripts\python.exe
 
-Packages = ["python-docx","docx","numpy","requests","bs4","pandas","selenium","webdriver-manager","matplotlib","jupyter"]
+Packages = ["python-docx","docx","numpy","requests","bs4",
+"pandas","selenium","webdriver-manager","matplotlib","jupyter"]
 
 installed_packages = pkg_resources.working_set
 installed_packages_list = sorted(["%s==%s" % (i.key, i.version) for i in installed_packages])

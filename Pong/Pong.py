@@ -23,7 +23,7 @@ wn.tracer(0)
 current_file = __file__
 image = Image.open(os.path.join(current_file,'..\\pic_OG.png'))
 new_image = image.resize((50, 50))
-new_image.save('pic_Pong.gif')
+new_image.save(os.path.join(current_file,'..\\pic_Pong.gif'))
 
 wn.addshape('pic_Pong.gif')
 
