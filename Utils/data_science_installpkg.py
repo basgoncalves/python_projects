@@ -8,7 +8,8 @@ import subprocess
 import sys
 import pkg_resources
 
-Packages = ["numpy","requests","bs4","pandas","selenium","webdriver-manager","matplotlib"]
+Packages = ["numpy","requests","bs4","pandas","selenium","webdriver-manager","matplotlib","docx",
+        "facebook"]
 
 installed_packages = pkg_resources.working_set
 installed_packages_list = sorted(["%s==%s" % (i.key, i.version) for i in installed_packages])
