@@ -44,18 +44,17 @@ names = []
 for i in range(0,len(authors)):
     names.append(authors[i]['data-ga-label'])
 
+last_name = (names[0].rsplit(" ", 1)[1] + ' et al.')
 title = soup.find('h1', class_='heading-title').text.strip()
 journal = soup.find('div', class_='journal-actions dropdown-block').button['title']
 year = soup.find('span', class_='cit').text[0:4]
 doi = soup.find('span', class_='citation-doi').text.strip()
 
-data = {'Name': [names[0]],'year': [year], 'journal': [journal], 
+data = {'author': [last_name],'year': [year], 'journal': [journal], 
         'url': [url]}
 
 df = pd.DataFrame(data)
 df[0:].to_clipboard(excel=True, sep=None, index=False, header=None)
 
-print({'title': [title], 'doi': [doi]})
+print({'author':[last_name],'title': [title], 'doi': [doi]})
 
-last_name = names[0].rsplit(" ", 1)[1]
-print({(last_name + 'et al.')})
