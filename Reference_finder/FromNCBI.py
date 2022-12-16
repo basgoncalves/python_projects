@@ -8,10 +8,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
 
 # find location of current file
-# (use 'os.path.dirname(__file__)' if using .py 
-# OR 
-# 'os.getcwd() ' if using ipynb)
-current_script_path = os.path.dirname(__file__)
+current_script_path = os.path.dirname(__file__)# 'os.path.dirname(__file__)' if.py  'os.getcwd() ' if  .ipynb)
 print(current_script_path)
 
 print("Paste the pubmed URL for the paper: ")
