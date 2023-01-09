@@ -7,15 +7,15 @@ import time
 import platform
 
 device_details = platform.uname()
-print()
+print(type(device_details))
 msg = input('Which pc are you pulling to? (P = personal / W = work at uni vienna):') 
 
-if msg is 'P':
+if msg == 'P':
         # list of repos in the current local machine
         repos =[r'C:\Users\Bas\Documents\Papers-Reviews\Reviews',
                 r'C:\Code\Git\Python_projects',
                 r'C:\Code\Git\MSKmodelling']
-elif msg is 'W':
+elif msg == 'W':
         repos =[r'C:\Users\Biomech\Documents\Papers-Reviews',
                 r'C:\Git\Python_projects',
                 r'C:\Git\MSKmodelling']
