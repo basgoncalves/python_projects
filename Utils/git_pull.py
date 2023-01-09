@@ -23,6 +23,12 @@ for repo_directory in repos:
     print('')
     print('pulling "' + repo_directory + '" ...')
     print('')
-    time.sleep(0.9)
+    time.sleep(0.75)
     # pull
     subprocess.run(["git", "pull"], cwd=repo_directory) 
+
+# # clear console
+# clear = lambda: os.system('cls')
+# clear()
+
+print('Everything is up to date')
