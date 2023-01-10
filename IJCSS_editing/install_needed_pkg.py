@@ -8,15 +8,16 @@ import pkg_resources
 # .\install_needed_pkg.py
 # .\virtual_env\Scripts\python.exe
 
-Packages = ["python-docx","docx","numpy","requests","bs4",
-"pandas","selenium","webdriver-manager","matplotlib","jupyter"]
+Packages = ['python-docx','docx','numpy','requests','bs4','tk','docx2pdf','shutil',
+'pandas','selenium','webdriver-manager','matplotlib','jupyter','aspose-words']
 
 installed_packages = pkg_resources.working_set
-installed_packages_list = sorted(["%s==%s" % (i.key, i.version) for i in installed_packages])
+installed_packages_list = sorted(['%s==%s' % (i.key, i.version) for i in installed_packages])
 
 
 for pkg in Packages:
     if any(pkg in s for s in installed_packages_list):
-        print(pkg + " already installed")
+        a=2
+        # print(pkg + ' already installed')
     else:
-        subprocess.check_call([sys.executable, "-m", "pip", "install", pkg])
+        subprocess.check_call([sys.executable, '-m', 'pip', 'install', pkg])
