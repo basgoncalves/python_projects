@@ -9,6 +9,8 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename, askdirectory
 from docx2pdf import convert
 import shutil
+import textract
+
 
 # User select the folder of the volume you want to convert folders 
 volumes_path = askdirectory(initialdir=r'Z:\iacss\IACSS_IJCSS\IJCSS\Volumes')
@@ -26,10 +28,16 @@ submit_folder = os.path.join(volumes_path, r'3-Uploads\10516-Volume{}-Issue{}'.f
 if not os.path.isdir(submit_folder):
     os.mkdir(submit_folder)
 
-for path, subdirs, files in os.walk(word_path): 
+for path, subdirs, files in os.walk(word_path):
     for name in files:
         # For each file we find, we need to ensure it is a .docx file before adding
         #  it to our list
+        try: 
+            text = textract.process(os.path.join(path, name))
+        except: 
+            print('not able to open ' + os.path.join(path, name))
+            continue
+        
         if os.path.splitext(os.path.join(path, name))[1] == ".docx":
             word_file_path = os.path.join(path, name)
             

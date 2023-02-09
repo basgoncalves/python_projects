@@ -7,20 +7,18 @@ import time
 import platform
 
 device_details = platform.uname()
-print(type(device_details))
-msg = input('Which pc are you pulling to? (P = personal / W = work at uni vienna):') 
 
 # list of directories where repos are stored depending on current local machine
-if msg is 'P':
+if device_details.node == 'P':
         repos =[r'C:\Users\Bas\Documents\Papers-Reviews',
                 r'C:\Code\Git\Python_projects',
                 r'C:\Code\Git\MSKmodelling']
-elif msg == 'W':
-        repos =[r'C:\Users\Biomech\Documents\Papers-Reviews',
+elif device_details.node == 'DESKTOP-8KRF896':
+        repos =[r'C:\Git\Papers-Reviews',
                 r'C:\Git\Python_projects',
                 r'C:\Git\MSKmodelling']
 else:
-        print('Please write "W" or "P"')
+        print('Current machine not configured. Add folder paths to the script or perform "git pull manually"')
         exit()
         
 # loop over the list 
