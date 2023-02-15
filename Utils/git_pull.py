@@ -9,8 +9,8 @@ import platform
 device_details = platform.uname()
 
 # list of directories where repos are stored depending on current local machine
-if device_details.node == 'P':
-        repos =[r'C:\Users\Bas\Documents\Papers-Reviews',
+if device_details.node == 'Bas-PC':
+        repos =[r'C:\Code\Git\Papers-Reviews',
                 r'C:\Code\Git\Python_projects',
                 r'C:\Code\Git\MSKmodelling']
 elif device_details.node == 'DESKTOP-8KRF896':
