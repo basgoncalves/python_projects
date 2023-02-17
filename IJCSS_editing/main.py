@@ -11,6 +11,7 @@ from docx2pdf import convert
 import shutil
 import textract
 
+# just run the code and you will be asked to select the Volume folder 
 
 # User select the folder of the volume you want to convert folders 
 volumes_path = askdirectory(initialdir=r'Z:\iacss\IACSS_IJCSS\IJCSS\Volumes')
@@ -18,6 +19,9 @@ word_path = os.path.join(volumes_path, r'3-Uploads\1-Word','')
 pdf_path = os.path.join(volumes_path, r'3-Uploads\2-PDF_ausWord','')
 ps_path = os.path.join(volumes_path,r'3-Uploads\3-PostScript','')
 final_path = os.path.join(volumes_path, r'3-Uploads\4-PDF_ausPostScript','')
+
+# open the progress file 
+os.startfile(os.path.join(volumes_path, r'IJCSS - Progress.xlsx'))
 
 # get volume and issue from folder name (must be in the format 'Vol222023Ed1')
 volume = volumes_path.split(r'/')[-1].split('Vol')[1][0:2]
