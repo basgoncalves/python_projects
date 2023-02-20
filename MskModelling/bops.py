@@ -1,6 +1,56 @@
 import os
 import opensim as osim
 from xml.etree import ElementTree as ET
+import numpy as np
+import pyc3dserver as c3d
+import pandas as pd
+
+
+def c3d_to_sto(c3dfilepath):
+    maindir = os.path.dirname(c3dfilepath)
+    
+    # import c3d file data to a table
+    adapter = osim.C3DFileAdapter()
+    tables = adapter.read(c3dfilepath)
+
+    # save marker .mot
+    markers = adapter.getMarkersTable(tables)
+    markersFlat = markers.flatten()
+    markersFilename = os.path.join(maindir,'markers.trc')
+    stoAdapter = osim.STOFileAdapter()
+    stoAdapter.write(markersFlat, markersFilename)
+    
+    # save grf .sto
+    forces = adapter.getForcesTable(tables)
+    forcesFlat = forces.flatten()
+    forcesFilename = os.path.join(maindir,'grf.mot')
+    stoAdapter = osim.STOFileAdapter()
+    stoAdapter.write(forcesFlat, forcesFilename)
+    
+def c3d_emg_export(c3dfilepath,emg_labels):   
+    # Get the COM object of C3Dserver (https://pypi.org/project/pyc3dserver/)
+    itf = c3d.c3dserver()
+    
+    # Open a C3D file
+    ret = c3d.open_c3d(itf, c3dfilepath)
+    
+    # For the information of all analogs(excluding or including forces/moments)
+    dict_analogs = c3d.get_dict_analogs(itf)
+    labels = dict_analogs['LABELS']
+
+    # Initialize the final dataframe
+    analog_df = pd.DataFrame()
+    
+    # Store each of the vectors in dict_analogs as a columns in the final dataframe
+    for iLab in labels:
+        if iLab in emg_labels:
+            iData = dict_analogs['DATA'][iLab] 
+            analog_df[iLab] = iData.tolist()
+    maindir = os.path.dirname(c3dfilepath)
+    
+    # Sava data in parent directory
+    emg_filename = os.path.join(maindir,r'emg.mot')
+    analog_df.to_csv(emg_filename)
 
 def run_IK(model_path, trc_file, resultsDir, marker_weights_path):
     # Load the TRC file

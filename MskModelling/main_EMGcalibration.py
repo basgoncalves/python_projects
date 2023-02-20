@@ -1,5 +1,6 @@
 import os
-import bops as osim
+import bops
+
 
 main_dir = r'Z:\GaitRetraining\MonteCarlo'
 data_dir = os.path.join(main_dir, 'TD10_Data')
@@ -27,10 +28,10 @@ for trial in trial_list:
     print(trialDir)
     # c3dExport(c3dpath)
     
-    osim.run_IK(model_path,trc_file,resultsDir,marker_weights_path)
+    bops.run_IK(model_path,trc_file,resultsDir,marker_weights_path)
     
     try:
         # run_ID(model_path,mot_file,grf_xml,resultsDir)
-        osim.run_MA(model_path, mot_file, grf_xml, os.path.join(resultsDir, 'ma_results'))
+        bops.run_MA(model_path, mot_file, grf_xml, os.path.join(resultsDir, 'ma_results'))
     except:
         print('didn''t work')
