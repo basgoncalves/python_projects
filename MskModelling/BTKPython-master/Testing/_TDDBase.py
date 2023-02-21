@@ -1,6 +1,6 @@
 import unittest
 
-import NodeTest
+from Base import NodeTest
 
 def suite():
     suite = unittest.TestSuite()

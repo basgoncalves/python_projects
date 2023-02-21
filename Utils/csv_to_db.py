@@ -34,12 +34,15 @@ def create_sql_fields(df):                                          # gather the
 def csv_to_db(csv_filedir):
 
     # SELECT CSV FILE PATH AND LOAD DATA
+
     if not Path(csv_filedir).is_file():                                                         
+        # if needed ask for user input of CVS file 
         current_path = os.getcwd()
         Tk().withdraw()                                     
-        csv_filedir = askopenfilename(initialdir=current_path)                                  # if needed ask for user input of CVS file 
+        csv_filedir = askopenfilename(initialdir=current_path)      
     try:
-        data = pd.read_csv(csv_filedir)                                                         # load CSV file
+        # load CSV file
+        data = pd.read_csv(csv_filedir)                                                         
     except:
         print("Something went wrong when opening to the file")
         print(csv_filedir)
