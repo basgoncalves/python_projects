@@ -23,16 +23,26 @@ else:
         exit()
         
 # loop over the list 
-for repo_directory in repos:
-    print('')
+output_dict = {}
+print('')
+for i in range(len(repos)):
+    repo_directory = repos[i]
     print('pulling "' + repo_directory + '" ...')
-    print('')
-    time.sleep(0.75)
-    # pull
-    subprocess.run(["git", "pull"], cwd=repo_directory) 
-
-# # clear console
-# clear = lambda: os.system('cls')
-# clear()
-
-print('Everything is up to date')
+    time.sleep(0.5)
+    
+    # pull and handle errors 
+    try:
+        output = subprocess.run(["git", "pull"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
+        if output.stdout is not None:
+                output_dict[repo_directory] = output.stdout.strip()
+        else:
+                output_dict[repo_directory] = 'none'
+    except subprocess.CalledProcessError as e:
+        output_dict[repo_directory] = e
+    except FileNotFoundError as e:
+        output_dict[repo_directory] = e
+    except Exception as e:
+        output_dict[repo_directory] = e
+    
+for key, value in output_dict.items():
+    print(f"{key}: {value}")
