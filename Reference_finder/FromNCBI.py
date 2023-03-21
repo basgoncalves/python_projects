@@ -53,5 +53,10 @@ data = {'author': [last_name],'year': [year], 'journal': [journal],
 df = pd.DataFrame(data)
 df[0:].to_clipboard(excel=True, sep=None, index=False, header=None)
 
+print('')
+print('')
+print(url)
 print({'author':[last_name],'title': [title], 'doi': [doi]})
+print(last_name + '-' + year + '-' + journal)
+
 
