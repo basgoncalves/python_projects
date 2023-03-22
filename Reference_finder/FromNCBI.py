@@ -45,7 +45,10 @@ last_name = (names[0].rsplit(" ", 1)[1] + ' et al.')
 title = soup.find('h1', class_='heading-title').text.strip()
 journal = soup.find('div', class_='journal-actions dropdown-block').button['title']
 year = soup.find('span', class_='cit').text[0:4]
-doi = soup.find('span', class_='citation-doi').text.strip()
+try:
+    doi = soup.find('span', class_='citation-doi').text.strip()
+except:
+    doi = 'not existent'
 
 data = {'author': [last_name],'year': [year], 'journal': [journal], 
         'url': [url]}

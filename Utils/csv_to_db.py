@@ -35,14 +35,12 @@ def csv_to_db(csv_filedir):
 
     # SELECT CSV FILE PATH AND LOAD DATA
 
-    if not Path(csv_filedir).is_file():                                                         
-        # if needed ask for user input of CVS file 
+    if not Path(csv_filedir).is_file():                                                             # if needed ask for user to input directory of CVS file 
         current_path = os.getcwd()
         Tk().withdraw()                                     
         csv_filedir = askopenfilename(initialdir=current_path)      
     try:
-        # load CSV file
-        data = pd.read_csv(csv_filedir)                                                         
+        data = pd.read_csv(csv_filedir)                                                             # load CSV file
     except:
         print("Something went wrong when opening to the file")
         print(csv_filedir)
