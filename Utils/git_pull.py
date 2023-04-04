@@ -12,7 +12,8 @@ device_details = platform.uname()
 if device_details.node == 'Bas-PC':
         repos =[r'C:\Code\Git\Papers-Reviews',
                 r'C:\Code\Git\Python_projects',
-                r'C:\Code\Git\MSKmodelling']
+                r'C:\Code\Git\MSKmodelling',
+                r'C:\Code\Git\msk_modelling_python']
 elif device_details.node == 'DESKTOP-8KRF896':
         repos =[r'C:\Git\Papers-Reviews',
                 r'C:\Git\Python_projects',
