@@ -17,4 +17,6 @@ for repo_directory in repos:
             print('these repos have unsolved commits')
             exist_changes_to_commit = 1
         print(repo_directory)
-        
+
+if exist_changes_to_commit == 0:
+    print('all repos re up to date')
