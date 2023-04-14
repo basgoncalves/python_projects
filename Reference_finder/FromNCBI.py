@@ -23,17 +23,16 @@ except:
     print("requsting data from " + url)
     data = requests.get(url)            # request data
 
-
-filename = os.path.join(current_script_path, '.\\ncbi.html')
-with open(filename, 'w+', encoding="utf-8") as f:
+ncbi_html = os.path.join(current_script_path, '.\\ncbi.html')
+with open(ncbi_html, 'w+', encoding="utf-8") as f:
     f.write(data.text)
-
 
 # create data frame
 dfs = []
-
-with open(filename, 'r', encoding="utf-8") as f:
+with open(ncbi_html, 'r', encoding="utf-8") as f:
     page = f.read()
+
+os.remove(ncbi_html)
 
 soup = BeautifulSoup(page, 'html.parser')
 authors = soup.findAll('a', class_='full-name')
