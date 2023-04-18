@@ -22,7 +22,8 @@ for i in range(len(repos)):
     try:
         output = subprocess.run(["git", "pull"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         if output.stdout is not None:
-                output_dict[repo_directory] = output.stdout.strip()
+                output = subprocess.run(["git", "log", "-1", "--pretty=format:%s"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                commit_message = output.stdout.decode().strip()
         else:
                 output_dict[repo_directory] = 'none'
     except subprocess.CalledProcessError as e:
