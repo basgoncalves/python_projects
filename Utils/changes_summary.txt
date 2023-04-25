@@ -1,0 +1,98 @@
+ C:\Git\Papers-Reviews
+
+R100	Colaborations/Research Proposal Draft - General_BG.docx	Colaborations/Amin/Research Proposal Draft - General_BG.docx
+R100	"Papers/JoaoOrtiz/Disserta\303\247\303\243o de Mestrado Jo\303\243o Ortiz 52894.pdf"	"Colaborations/JoaoOrtiz/Disserta\303\247\303\243o de Mestrado Jo\303\243o Ortiz 52894.pdf"
+R100	"Papers/JoaoOrtiz/drafts/Disserta\303\247\303\243o de Mestrado Jo\303\243o Ortiz_RM.docx"	"Colaborations/JoaoOrtiz/drafts/Disserta\303\247\303\243o de Mestrado Jo\303\243o Ortiz_RM.docx"
+R100	Papers/JoaoOrtiz/drafts/First_Final_Reviews_BG.pdf	Colaborations/JoaoOrtiz/drafts/First_Final_Reviews_BG.pdf
+R100	Papers/JoaoOrtiz/drafts/Presentation1.pptx	Colaborations/JoaoOrtiz/drafts/Presentation1.pptx
+R100	Papers/JoaoOrtiz/drafts/Procedimentos_BG.pdf	Colaborations/JoaoOrtiz/drafts/Procedimentos_BG.pdf
+R100	Papers/JoaoOrtiz/drafts/Procedimentos_RM_BG.docx	Colaborations/JoaoOrtiz/drafts/Procedimentos_RM_BG.docx
+R100	"Papers/Luis Cunha/Disserta\303\247\303\243o_Lu\303\255s Cunha_52644.pdf"	"Colaborations/Luis Cunha/Disserta\303\247\303\243o_Lu\303\255s Cunha_52644.pdf"
+R100	"Papers/Luis Cunha/drafts/Disserta\303\247\303\243o - Lu\303\255s Cunha_BG.pdf"	"Colaborations/Luis Cunha/drafts/Disserta\303\247\303\243o - Lu\303\255s Cunha_BG.pdf"
+R100	Papers/Luis Cunha/drafts/References_v1.docx	Colaborations/Luis Cunha/drafts/References_v1.docx
+R100	Papers/Luis Cunha/drafts/Tese_PDF_BG.pdf	Colaborations/Luis Cunha/drafts/Tese_PDF_BG.pdf
+R100	Papers/Luis Cunha/drafts/Tese_Pdf_RM_BG.docx	Colaborations/Luis Cunha/drafts/Tese_Pdf_RM_BG.docx
+R100	Papers/Luis Cunha/drafts/novathesis_master (11).pdf	Colaborations/Luis Cunha/drafts/novathesis_master (11).pdf
+R100	Papers/Luis Cunha/drafts/novathesis_master_word_BG.docx	Colaborations/Luis Cunha/drafts/novathesis_master_word_BG.docx
+
+C:\Git\Python_projects
+
+M	IJCSS_editing/main.py
+
+C:\Git\msk_modelling_python
+
+A	ExampleData/SJ_example/SJ1.c3d
+A	ExampleData/SJ_example/SJ1/c3dfile.c3d
+A	ExampleData/SJ_example/SJ1/emg.csv
+A	ExampleData/SJ_example/SJ1/grf.mot
+A	ExampleData/SJ_example/SJ1/markers.trc
+A	ExampleData/SJ_example/SJ2.c3d
+A	ExampleData/SJ_example/SJ2/c3dfile.c3d
+A	ExampleData/SJ_example/SJ2/emg.csv
+A	ExampleData/SJ_example/SJ2/grf.mot
+A	ExampleData/SJ_example/SJ2/markers.trc
+A	ExampleData/SJ_example/SJ3.c3d
+A	ExampleData/SJ_example/SJ3/c3dfile.c3d
+A	ExampleData/SJ_example/SJ3/emg.csv
+A	ExampleData/SJ_example/SJ3/grf.mot
+A	ExampleData/SJ_example/SJ3/markers.trc
+A	ExampleData/SJ_example/SJ4.c3d
+A	ExampleData/SJ_example/SJ4/c3dfile.c3d
+A	ExampleData/SJ_example/SJ4/emg.csv
+A	ExampleData/SJ_example/SJ4/grf.mot
+A	ExampleData/SJ_example/SJ4/markers.trc
+A	ExampleData/SJ_example/SJ5.c3d
+A	ExampleData/SJ_example/SJ5/c3dfile.c3d
+A	ExampleData/SJ_example/SJ5/emg.csv
+A	ExampleData/SJ_example/SJ5/grf.mot
+A	ExampleData/SJ_example/SJ5/markers.trc
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/_StaticOptimization_activation.sto
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/_StaticOptimization_force.sto
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/_ik_marker_errors.sto
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/_ik_model_marker_locations.sto
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/_joint reaction analysis_ReactionLoads.sto
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/c3dfile.c3d
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/grf.mot
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/ik.mot
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/markers.trc
+D	ExampleData/simulations/P01/pre/dynamic04_full - Copy/markers_new.trc
+R100	ExampleData/simulations/P01/pre/dynamic04_full - Copy/GRF.xml	ExampleData/simulations/P01/pre/dynamic04_full/GRF.xml
+A	ExampleData/simulations/P01/pre/dynamic04_full/_StaticOptimization_activation.sto
+R069	ExampleData/simulations/P01/pre/dynamic04_full - Copy/_StaticOptimization_controls.xml	ExampleData/simulations/P01/pre/dynamic04_full/_StaticOptimization_controls.xml
+A	ExampleData/simulations/P01/pre/dynamic04_full/_StaticOptimization_force.sto
+A	ExampleData/simulations/P01/pre/dynamic04_full/_ik_marker_errors.sto
+A	ExampleData/simulations/P01/pre/dynamic04_full/_ik_model_marker_locations.sto
+A	ExampleData/simulations/P01/pre/dynamic04_full/_joint reaction analysis_ReactionLoads.sto
+A	ExampleData/simulations/P01/pre/dynamic04_full/emg.csv
+A	ExampleData/simulations/P01/pre/dynamic04_full/grf.mot
+A	ExampleData/simulations/P01/pre/dynamic04_full/ik.mot
+R100	ExampleData/simulations/P01/pre/dynamic04_full - Copy/inverse_dynamics.sto	ExampleData/simulations/P01/pre/dynamic04_full/inverse_dynamics.sto
+R100	ExampleData/simulations/P01/pre/dynamic04_full - Copy/marker_experimental.trc	ExampleData/simulations/P01/pre/dynamic04_full/marker_experimental.trc
+A	ExampleData/simulations/P01/pre/dynamic04_full/markers.trc
+R081	ExampleData/simulations/P01/pre/dynamic04_full - Copy/opensim.log	ExampleData/simulations/P01/pre/dynamic04_full/opensim.log
+R100	ExampleData/simulations/P01/pre/dynamic04_full - Copy/settings.mat	ExampleData/simulations/P01/pre/dynamic04_full/settings.mat
+R087	ExampleData/simulations/P01/pre/dynamic04_full - Copy/setup_id.xml	ExampleData/simulations/P01/pre/dynamic04_full/setup_id.xml
+R100	ExampleData/simulations/P01/pre/dynamic04_full - Copy/setup_ik.xml	ExampleData/simulations/P01/pre/dynamic04_full/setup_ik.xml
+R090	ExampleData/simulations/P01/pre/dynamic04_full - Copy/setup_jra.xml	ExampleData/simulations/P01/pre/dynamic04_full/setup_jra.xml
+R092	ExampleData/simulations/P01/pre/dynamic04_full - Copy/setup_so.xml	ExampleData/simulations/P01/pre/dynamic04_full/setup_so.xml
+A	ExampleData/simulations/P01/pre/dynamic04_full/test_data_forces.mot
+A	ExampleData/simulations/P01/pre/dynamic04_full/test_data_markers.trc
+M	ExampleData/simulations/P01/pre/dynamic06_full/_StaticOptimization_activation.sto
+M	ExampleData/simulations/P01/pre/dynamic06_full/_StaticOptimization_controls.xml
+M	ExampleData/simulations/P01/pre/dynamic06_full/_StaticOptimization_force.sto
+M	ExampleData/simulations/P01/pre/dynamic06_full/_ik_marker_errors.sto
+M	ExampleData/simulations/P01/pre/dynamic06_full/_ik_model_marker_locations.sto
+M	ExampleData/simulations/P01/pre/dynamic06_full/_joint reaction analysis_ReactionLoads.sto
+M	ExampleData/simulations/P01/pre/dynamic06_full/grf.mot
+M	ExampleData/simulations/P01/pre/dynamic06_full/ik.mot
+M	ExampleData/simulations/P01/pre/dynamic06_full/markers.trc
+M	ExampleData/simulations/P01/pre/dynamic06_full/setup_id.xml
+M	ExampleData/simulations/P01/pre/dynamic06_full/setup_jra.xml
+M	ExampleData/simulations/P01/pre/dynamic06_full/setup_so.xml
+M	__pycache__/bops.cpython-38.pyc
+M	__pycache__/msk_modelling_pkg_install.cpython-38.pyc
+M	bops.py
+M	bops_test.py
+A	src/calculate_jump_height.py
+M	test.py
+
