@@ -33,7 +33,7 @@ submit_folder = os.path.join(volumes_path, r'3-Uploads\10516-Volume{}-Issue{}'.f
 if not os.path.isdir(submit_folder):
     os.mkdir(submit_folder)
     
-a = 1
+re_convert_files_that_already_exist = False
 
 for path, subdirs, files in os.walk(word_path):
     for name in files:
@@ -56,19 +56,19 @@ for path, subdirs, files in os.walk(word_path):
             submit_file_path_final = os.path.join(submit_folder,name.replace(file_extension,'.pdf'))
             
             # convert to PDF
-            if not os.path.isfile(pdf_file_path) and a == 2:
+            if not os.path.isfile(pdf_file_path) or re_convert_files_that_already_exist == True:
                 convert(word_file_path, pdf_file_path) 
             
             # convert to post script
-            if not os.path.isfile(ps_file_path) and a == 2:
+            if not os.path.isfile(ps_file_path) or re_convert_files_that_already_exist == True:
                 subprocess.call(['pdf2ps', pdf_file_path, ps_file_path])          
             
             # convert to pdf again (final)
-            if not os.path.isfile(pdf_file_path_final) and a == 2:
+            if not os.path.isfile(pdf_file_path_final) or re_convert_files_that_already_exist == True:
                 subprocess.call(['ps2pdf', ps_file_path, pdf_file_path_final])
             
             # copy pdf to the final location 
-            if not os.path.isfile(submit_file_path_final) and a == 2:
+            if not os.path.isfile(submit_file_path_final) or re_convert_files_that_already_exist == True:
                 shutil.copyfile(pdf_file_path_final, submit_file_path_final)
 
                 
