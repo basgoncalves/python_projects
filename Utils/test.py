@@ -1,14 +1,14 @@
-import os
+import re
 
+string = 'M\t__pycache__/bops.cpython-38.pyc\nA\tbland_altman.py\nM\tbops_test.py\nA\tjump_height.py\nM\tmain_gait_retraining.py\nM\ttest.py\n'
 
-text = 'Welcome to datagy.io!'
-text2 = 'Bye to datagy.io!'
-dir_path = os.path.dirname(os.path.realpath(__file__)) # for .py
-txt_file = os.path.join(dir_path, 'changes_summary.txt')
+# Split the string based on the delimiters using regular expression
+parts = re.split(r'nM\t|nA\t|nD\t', string)
 
-with open(txt_file, 'a') as f:
-    f.write(text)
-    f.write('\n')
-    
-with open(txt_file, 'a') as f:
-    f.write(text2)
+# Remove empty strings from the list
+parts = [part for part in parts if part]
+
+# Join the parts with newlines
+result = '\n'.join(parts)
+
+print(result)
