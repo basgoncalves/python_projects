@@ -1,8 +1,5 @@
 # make sure all packages are installed 
 import install_needed_pkg
-
-# import packages
-import install_needed_pkg
 import subprocess 
 import aspose.words as aw
 import os
