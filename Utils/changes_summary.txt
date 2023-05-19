@@ -1,5 +1,0 @@
- C:\Git\Python_projects
-
-M	Utils/changes_summary.txt
-M	Utils/git_stauts.py
-M	Utils/test.py	
