@@ -4,10 +4,10 @@ from tkinter import Tk
 from tkinter.filedialog import askopenfilename, askdirectory
 import math
 
-dir_path = os.path.dirname(os.path.realpath(__file__)) # for .py
+current_path = os.getcwd()
 
 # User select the folder of the volume you want to convert folders
-target_path = askdirectory(initialdir=dir_path)
+target_path = askdirectory(initialdir=current_path)
 
 size_bytes = 0
 selected_filename = ''

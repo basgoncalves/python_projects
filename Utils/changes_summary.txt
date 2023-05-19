@@ -1,16 +1,5 @@
  C:\Git\Python_projects
 
-M	IJCSS_editing/main.py
 M	Utils/changes_summary.txt
 M	Utils/git_stauts.py
-M	Utils/test.py
-
-C:\Git\msk_modelling_python
-
-M	__pycache__/bops.cpython-38.pyc
-A	bland_altman.py
-M	bops_test.py
-A	jump_height.py
-M	main_gait_retraining.py
-M	test.py
-
+M	Utils/test.py	
