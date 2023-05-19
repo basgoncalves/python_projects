@@ -17,7 +17,8 @@ def split_changes_summary_in_different_lines(string):
 repos = import_repos()
 exist_changes_to_commit = 0
 dir_path = os.path.dirname(os.path.realpath(__file__)) # for .py
-txt_file = os.path.join(dir_path, 'changes_summary.txt')
+desktop_path = os.path.expanduser("~/Desktop")
+txt_file = os.path.join(desktop_path, 'changes_summary.txt')
 
 # empty file
 with open(txt_file, 'w') as f:
