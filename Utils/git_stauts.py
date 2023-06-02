@@ -28,18 +28,21 @@ with open(txt_file, 'w') as f:
 for repo_directory in repos:
     os.chdir(repo_directory)
     time.sleep(0.75)
+    
     # pull
     output = subprocess.run(["git", "status"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
+    
     if output.stdout is not None and not str(output.stdout).__contains__('working tree clean'):
         if exist_changes_to_commit == 0:
             print('these repos have unsolved commits')
             exist_changes_to_commit = 1
         print(repo_directory)
+        
         # get commit summary
         changes_summary = subprocess.run(["git", "diff", "--name-status", "HEAD^"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         changes_summary = split_changes_summary_in_different_lines(changes_summary.stdout.decode('utf-8'))
-        # print(changes_summary.stdout.decode('utf-8'))
-        # write changes summary to text file
+        
+        # print(changes_summary.stdout.decode('utf-8')) write changes summary to text file
         with open(txt_file, 'a') as f:
             f.write(repo_directory + '\n') 
             f.write('\n')
