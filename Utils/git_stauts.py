@@ -49,7 +49,7 @@ for repo_directory in repos:
             f.write(changes_summary)
             f.write('\n')
                 
-subprocess.Popen(["explorer", txt_file],creationflags=subprocess.DETACHED_PROCESS)
+os.startfile(txt_file)
 
 if exist_changes_to_commit == 0:
     print('all repos are up to date')
