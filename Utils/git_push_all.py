@@ -27,6 +27,7 @@ repos = import_repos()
 # loop over the list of repos
 for i in range(len(repos)):
     repo_directory = repos[i]
+    os.chdir(repo_directory)
     
     time.sleep(0.5)
     output = subprocess.run(["git", "status"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
@@ -34,8 +35,7 @@ for i in range(len(repos)):
         print(summary_git_status(repo_directory))
         print('trying to push "' + repo_directory + '" ...')
         msg = input('Type the commit message (+ ENTER):') 
-        repo_directory = os.getcwd()
-
+        
         # add all the files
         subprocess.run(["git", "add", "."], cwd=repo_directory)
         # commit file
