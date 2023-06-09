@@ -27,10 +27,11 @@ for i in range(len(repos)):
     
     # pull and handle errors 
     try:
-        output = subprocess.run(["git", "pull"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
-        if output.stdout is not None:
-                output = subprocess.run(["git", "log", "-1", "--pretty=format:%s"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-                commit_message = output.stdout.decode().strip()
+        output_pull = subprocess.run(["git", "pull"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
+        if output_pull.stdout is not None:
+                output_log = subprocess.run(["git", "log", "-1", "--pretty=format:%s"], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                last_commit_message = output_log.stdout.decode().strip()
+                output_dict[repo_directory] = output_pull.stdout
         else:
                 output_dict[repo_directory] = 'none'
     except subprocess.CalledProcessError as e:
@@ -39,13 +40,15 @@ for i in range(len(repos)):
         output_dict[repo_directory] = e
     except Exception as e:
         output_dict[repo_directory] = e
-        
+    
     # print(changes_summary.stdout.decode('utf-8')) write changes summary to text file
     with open(txt_file, 'a') as f:
         f.write(repo_directory + '\n') 
         f.write('\n')
-        f.write(output_dict[repo_directory] )
+        f.write(str(output_dict[repo_directory]))
         f.write('\n')
+
+os.startfile(txt_file)
 
 for key, value in output_dict.items():
     print(f"{key}: {value}")
