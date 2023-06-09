@@ -10,6 +10,13 @@ from git_repos import import_repos
 repos = import_repos()
 print(repos)
         
+desktop_path = os.path.expanduser("~/Desktop")
+txt_file = os.path.join(desktop_path, 'changes_summary.txt')
+
+# empty file
+with open(txt_file, 'w') as f:
+    f.write(' ')         
+        
 # loop over the list 
 output_dict = {}
 print('')
@@ -32,6 +39,13 @@ for i in range(len(repos)):
         output_dict[repo_directory] = e
     except Exception as e:
         output_dict[repo_directory] = e
-    
+        
+    # print(changes_summary.stdout.decode('utf-8')) write changes summary to text file
+    with open(txt_file, 'a') as f:
+        f.write(repo_directory + '\n') 
+        f.write('\n')
+        f.write(output_dict[repo_directory] )
+        f.write('\n')
+
 for key, value in output_dict.items():
     print(f"{key}: {value}")
