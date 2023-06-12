@@ -39,8 +39,7 @@ for repo_directory in repos:
         print(repo_directory)
         
         # get commit summary
-        changes_summary = subprocess.run(["git", "diff", "--name-status", "HEAD^"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-        changes_summary = split_changes_summary_in_different_lines(changes_summary.stdout.decode('utf-8'))
+        changes_summary = split_changes_summary_in_different_lines(output.stdout.decode('utf-8'))
         
         # print(changes_summary.stdout.decode('utf-8')) write changes summary to text file
         with open(txt_file, 'a') as f:
@@ -48,6 +47,7 @@ for repo_directory in repos:
             f.write('\n')
             f.write(changes_summary)
             f.write('\n')
+            f.write('======================================================================= \n')
                 
 os.startfile(txt_file)
 

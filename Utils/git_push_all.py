@@ -13,8 +13,8 @@ def clear_terminal():
     
 def summary_git_status(repo_directory):
     
-    subprocess_output = subprocess.run(["git", "diff", "--name-status", "HEAD^"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-    string = subprocess_output.stdout.decode('utf-8')
+    output = subprocess.run(["git", "status"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
+    string = output.stdout.decode('utf-8')
     # split based on the possible git status outputs: https://git-scm.com/docs/git-status
     parts = re.split(r'nM\t|nA\t|nD\t|nT\t|nR\t|nC\t|nU\t', string) # Split the string based on the delimiters using regular expression
     parts = [part for part in parts if part] # Remove empty strings from the list

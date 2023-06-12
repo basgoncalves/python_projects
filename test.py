@@ -1,47 +1,43 @@
-import requests
+import subprocess
+import sys
 import os
-from bs4 import BeautifulSoup
-import pandas as pd
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from pathlib import Path
-import tkinter as tk
-from tkinter import messagebox
-from tkinter.filedialog import askopenfilename
+import time
+import re
+
+
+def split_changes_summary_in_different_lines(string):
+    # split based on the possible git status outputs: https://git-scm.com/docs/git-status
+    parts = re.split(r'nM\t|nA\t|nD\t|nT\t|nR\t|nC\t|nU\t', string) # Split the string based on the delimiters using regular expression
+    parts = [part for part in parts if part] # Remove empty strings from the list
+    result = '\n'.join(parts) # Join the parts with newlines
+    return result
+
+exist_changes_to_commit = 0
+dir_path = os.path.dirname(os.path.realpath(__file__)) # for .py
+desktop_path = os.path.expanduser("~/Desktop")
+txt_file = os.path.join(desktop_path, 'changes_summary.txt')
+
+# empty file
+with open(txt_file, 'w') as f:
+    f.write(' ') 
+
+repo_directory = r'C:\Git\Papers-Reviews'
+
+os.chdir(repo_directory)
+time.sleep(0.75)
+
+# pull
+output = subprocess.run(["git", "status"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
+print(output.stdout.decode('utf-8'))
+
+exit()
+if output.stdout is not None and not str(output.stdout).__contains__('working tree clean'):
+    if exist_changes_to_commit == 0:
+        print('these repos have unsolved commits')
+        exist_changes_to_commit = 1
+    print(repo_directory)
     
-
-def save_to_xlsx():
-    
-    # Step 1: Load the .xlsx file
-    file_path = askopenfilename(filetypes=[("Excel Files", "*.xlsx")])
-
-    # Check if a file was selected
-    if not file_path:
-        messagebox.showinfo("Info", "No file selected. Exiting...")
-        exit()
-
-    # Step 2: Find all the tabs and ask the user to select one
-    xl = pd.ExcelFile(file_path)
-    tabs = xl.sheet_names()
-    selected_tab = messagebox.askquestion("Select Tab", "Select a tab to add a row:", choices=tabs)
-
-    # Check if a tab was selected
-    if selected_tab == 'no':
-        messagebox.showinfo("Info", "No tab selected. Exiting...")
-        exit()
-
-    # Step 3: Add a row to the selected tab
-    df = pd.read_excel(file_path, sheet_name=selected_tab)
-    new_row = pd.DataFrame({'Column1': 'Value1', 'Column2': 'Value2'}, index=[0])
-    df = pd.concat([df, new_row])
-
-    # Step 4: Save the .xlsx file
-    xl_writer = pd.ExcelWriter(file_path, engine='xlsxwriter')
-    df.to_excel(xl_writer, sheet_name=selected_tab, index=False)
-    xl_writer.save()
-
-    # Step 5: Open the file in the system viewer
-    os.startfile(file_path)
-
-save_to_xlsx()
+    # get commit summary
+    changes_summary = subprocess.run(["git", "diff", "--name-status", "HEAD^"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    changes_summary = split_changes_summary_in_different_lines(changes_summary.stdout.decode('utf-8'))
+    print(changes_summary)
