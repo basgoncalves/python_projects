@@ -4,15 +4,7 @@ import sys
 import os
 import time
 import re
-from git_repos import import_repos
-
-
-def split_changes_summary_in_different_lines(string):
-    # split based on the possible git status outputs: https://git-scm.com/docs/git-status
-    parts = re.split(r'nM\t|nA\t|nD\t|nT\t|nR\t|nC\t|nU\t', string) # Split the string based on the delimiters using regular expression
-    parts = [part for part in parts if part] # Remove empty strings from the list
-    result = '\n'.join(parts) # Join the parts with newlines
-    return result
+from git_tools import import_repos,split_changes_summary_in_different_lines
 
 repos = import_repos()
 exist_changes_to_commit = 0
