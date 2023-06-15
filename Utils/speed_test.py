@@ -2,6 +2,7 @@ from turtle import color
 import speedtest
 import numpy as np
 import matplotlib.pyplot as plt
+import pkg_resources
 
 speed_test = speedtest.Speedtest()
 
