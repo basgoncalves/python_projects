@@ -42,6 +42,10 @@ for repo_directory in repos:
             f.write('======================================================================= \n')
                 
 if exist_changes_to_commit == 0:
+    with open(txt_file, 'a') as f:
+        f.write('======================================================================= \n')
+        f.write('all repos are up to date')
+        f.write('======================================================================= \n')
     print('all repos are up to date')
 else:
     answer = input('do you want to push all these repos? (y/n)  ')
