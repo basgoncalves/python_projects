@@ -41,7 +41,13 @@ for repo_directory in repos:
             f.write('\n')
             f.write('======================================================================= \n')
                 
-os.startfile(txt_file)
-
 if exist_changes_to_commit == 0:
     print('all repos are up to date')
+else:
+    answer = input('do you want to push all these repos? (y/n)  ')
+    
+    if answer == 'y':
+        import git_push_all
+    
+    
+os.startfile(txt_file)

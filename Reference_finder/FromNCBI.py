@@ -9,7 +9,7 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import messagebox
 from tkinter.filedialog import askopenfilename
-    
+import re
 
 def save_to_xlsx():
     
@@ -44,7 +44,31 @@ def save_to_xlsx():
     # Step 5: Open the file in the system viewer
     os.startfile(file_path)
 
+def get_pubmed_url(doi):
+    base_url = 'https://pubmed.ncbi.nlm.nih.gov/?term='
+    doi_url = base_url + doi.replace('/', '%2F')
+    
+    response = requests.get(doi_url)
+    if response.status_code == 200:
+        return response.url
+    else:
+        return None
 
+def identify_string_type(string):
+    # Regular expression patterns for URL and DOI
+    url_pattern = r'(http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\\(\\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+)'
+    doi_pattern = r'\b(10\.[0-9]{4,}(?:\.[1-9][0-9]*)*/(?:(?!["&\'<>])\S)+)\b'
+
+    # Check if the string matches the URL pattern
+    if re.match(url_pattern, string):
+        return 'URL'
+
+    # Check if the string matches the DOI pattern
+    if re.match(doi_pattern, string):
+        return 'DOI'
+
+    # If the string matches neither pattern, return None
+    return None
 
 # find location of current file
 current_script_path = os.path.dirname(__file__)# 'os.path.dirname(__file__)' if.py  'os.getcwd() ' if  .ipynb)
@@ -53,8 +77,16 @@ print(current_script_path)
 print("Paste the pubmed URL for the paper: ")
 url = input()
 
-# request data
-# if URL doesn't exist use a generic Pubmed link
+if identify_string_type(url) == 'DOI':
+    print('good')
+    url = get_pubmed_url(url)
+    print('new url: ', url)
+    
+exit()
+
+
+
+# request data if URL doesn't exist use a generic Pubmed link
 try:
     print("requsting data from " + url)
     data = requests.get(url)            
