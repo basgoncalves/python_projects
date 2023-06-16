@@ -4,7 +4,6 @@ import subprocess
 import sys
 import os
 
-
 msg = input('Type the commit message (+ ENTER):') 
 repo_directory = os.getcwd()
 
