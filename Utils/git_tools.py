@@ -9,7 +9,7 @@ def import_repos():
     name_pc = device_details.node
     # list of directories where repos are stored depending on current local machine
     if name_pc == 'Bas-PC' or name_pc == 'DESKTOP-8KRF896':
-        repos =[r'C:\Git\Papers-Reviews',
+        repos =[r'C:\Git\Research_documents',
                 r'C:\Git\Python_projects',
                 r'C:\Git\MSKmodelling',
                 r'C:\Git\msk_modelling_python',
