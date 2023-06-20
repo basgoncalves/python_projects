@@ -82,9 +82,6 @@ if identify_string_type(url) == 'DOI':
     url = get_pubmed_url(url)
     print('new url: ', url)
     
-exit()
-
-
 
 # request data if URL doesn't exist use a generic Pubmed link
 try:
