@@ -1,6 +1,11 @@
-import re
+import easygui
 
+re_convert_files_that_already_exist = easygui.boolbox(
+    msg="Select an option for re_convert_files_that_already_exist",
+    title="Boolean Selection",
+    choices=["True", "False"],
+)
 
-string_type = identify_string_type('https://www.bing.com/search?q=opensim+python&cvid=0f5e35940099497481258afaad358ad8&aqs=edge.0.69i59j0l6j69i60l2.2204j0j9&FORM=ANAB01&PC=EDGEDBB')
+re_convert_files_that_already_exist = bool(re_convert_files_that_already_exist)
 
-print(string_type)
+print(f"Selected value for re_convert_files_that_already_exist: {re_convert_files_that_already_exist}")
