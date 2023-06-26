@@ -52,5 +52,3 @@ for i in range(len(repos)):
 
 os.startfile(txt_file)
 
-for key, value in output_dict.items():
-    print(f"{key}: {value}")
