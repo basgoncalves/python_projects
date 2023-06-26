@@ -4,7 +4,6 @@ import subprocess
 import sys
 import os
 from git_tools import summary_git_status
-
 repo_directory = os.getcwd()
 
 # git status print

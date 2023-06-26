@@ -47,6 +47,8 @@ for i in range(len(repos)):
         f.write('\n')
         f.write(str(output_dict[repo_directory]))
         f.write('\n')
+        f.write('===============================================')
+        f.write('===============================================')
 
 os.startfile(txt_file)
 
