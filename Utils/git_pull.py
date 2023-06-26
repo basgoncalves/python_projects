@@ -44,11 +44,11 @@ for i in range(len(repos)):
     # print(changes_summary.stdout.decode('utf-8')) write changes summary to text file
     with open(txt_file, 'a') as f:
         f.write(repo_directory + '\n') 
-        f.write('\n')
-        f.write(str(output_dict[repo_directory]))
-        f.write('\n')
-        f.write('===============================================')
-        f.write('===============================================')
+        f.write('output: ' + '\n')
+        f.write(str(output_dict[repo_directory]) + '\n')
+        f.write(' ' + '\n')
+        f.write('===============================================' + '\n')
+        f.write('===============================================' + '\n')
 
 os.startfile(txt_file)
 
