@@ -1,11 +1,7 @@
-import easygui
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import os
 
-re_convert_files_that_already_exist = easygui.boolbox(
-    msg="Select an option for re_convert_files_that_already_exist",
-    title="Boolean Selection",
-    choices=["True", "False"],
-)
 
-re_convert_files_that_already_exist = bool(re_convert_files_that_already_exist)
-
-print(f"Selected value for re_convert_files_that_already_exist: {re_convert_files_that_already_exist}")
