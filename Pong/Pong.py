@@ -21,11 +21,14 @@ wn.setup(width_window,height_window)
 wn.tracer(0)
 
 current_file = __file__
-image = Image.open(os.path.join(current_file,'..\\pic_OG.png'))
-new_image = image.resize((50, 50))
-new_image.save(os.path.join(current_file,'..\\pic_Pong.gif'))
+ogPicPath = os.path.join(current_file,'..\\pic_OG.png')
+picPongPath = os.path.join(current_file,'..\\pic_Pong.gif')
 
-wn.addshape('pic_Pong.gif')
+image = Image.open(ogPicPath)
+new_image = image.resize((50, 50))
+new_image.save(picPongPath)
+
+wn.addshape(picPongPath)
 
 # Paddel A
 paddle_a = turtle.Turtle()
@@ -48,7 +51,7 @@ paddle_b.shapesize(5,1,1)
 # Ball 
 ball = turtle.Turtle()
 ball.speed(0)
-ball.shape('pic_Pong.gif')
+ball.shape(picPongPath)
 ball.color('red')
 ball.penup()
 ball.goto(0,0)
