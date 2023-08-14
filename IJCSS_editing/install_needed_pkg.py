@@ -9,7 +9,7 @@ import pkg_resources
 # .\virtual_env\Scripts\python.exe
 
 Packages = ['python-docx','docx','numpy','requests','bs4','tk','docx2pdf','pytest-shutil',
-'pandas','selenium','webdriver-manager','matplotlib','jupyter','aspose-words','textract']
+'pandas','selenium','webdriver-manager','matplotlib','jupyter','aspose-words','textract','pyautogui']
 
 installed_packages = pkg_resources.working_set
 installed_packages_list = sorted(['%s==%s' % (i.key, i.version) for i in installed_packages])

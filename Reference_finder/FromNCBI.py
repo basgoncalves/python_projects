@@ -70,6 +70,59 @@ def identify_string_type(string):
     # If the string matches neither pattern, return None
     return None
 
+def send_to_citation_manager(url=0):
+    from selenium import webdriver
+    from selenium.webdriver.common.by import By
+    from selenium.webdriver.support.ui import WebDriverWait
+    from selenium.webdriver.support import expected_conditions as EC
+    from bs4 import BeautifulSoup
+    # Set up the Selenium webdriver
+    driver = webdriver.Chrome()
+
+    url = 'https://pubmed.ncbi.nlm.nih.gov/33967684/'
+
+    driver.get(url)
+
+    # Wait for the "Citation manager" button to be visible
+    wait = WebDriverWait(driver, 1)
+    citation_manager_button = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "citation-manager-panel-trigger")))
+
+    # Click the "Citation manager" button
+    citation_manager_button.click()
+
+    # Wait for the "Create file" button to be visible
+    create_file_button = wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "action-panel-submit")))
+
+    # Click the "Create file" button
+    create_file_button.click()
+
+    # Wait for the file to be generated and retrieve the download link
+    wait.until(EC.presence_of_element_located((By.CLASS_NAME, "download-link")))
+    download_link = driver.find_element(By.CLASS_NAME, "download-link").get_attribute("href")
+
+    # Print the download link
+    print(download_link)
+
+    options = webdriver.ChromeOptions()
+    options.add_experimental_option("prefs", {
+        "download.default_directory": get_download_dir()
+    })
+
+    driver = webdriver.Chrome(options=options)
+
+def get_download_dir():
+    home_dir = os.path.expanduser("~")
+
+    # Construct the download folder path based on the operating system
+    if os.name == 'nt':  # Windows
+        download_folder = os.path.join(home_dir, 'Downloads')
+    elif os.name == 'posix':  # macOS or Linux
+        download_folder = os.path.join(home_dir, 'Downloads')
+    else:
+        download_folder = None  # Unsupported operating system
+    
+    return download_folder
+    
 # find location of current file
 current_script_path = os.path.dirname(__file__)# 'os.path.dirname(__file__)' if.py  'os.getcwd() ' if  .ipynb)
 print(current_script_path)
@@ -78,13 +131,10 @@ print("Paste the pubmed URL for the paper: ")
 url = input()
 
 if identify_string_type(url) == 'DOI':
-    print('good')
+    print('PubMed URL identified...')
     url = get_pubmed_url(url)
     print('new url: ', url)
     
-exit()
-
-
 
 # request data if URL doesn't exist use a generic Pubmed link
 try:
