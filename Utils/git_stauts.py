@@ -21,9 +21,13 @@ def git_status():
 
     # loop over the list 
     for repo_directory in repos:
-        os.chdir(repo_directory)
-        time.sleep(0.75)
-        
+        try:
+            os.chdir(repo_directory)
+            time.sleep(0.75)
+        except:
+            print([repo_directory + " does not exist."])
+            continue
+    
         # pull
         output = subprocess.run(["git", "status"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
         
