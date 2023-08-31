@@ -48,7 +48,7 @@ ps_path = os.path.join(volumes_path,r'3-Uploads\3-PostScript','')
 final_path = os.path.join(volumes_path, r'3-Uploads\4-PDF_ausPostScript','')
 
 # open the progress file 
-os.startfile(os.path.join(volumes_path, r'IJCSS - Progress.xlsx'))
+os.startfile(os.path.join(os.path.dirname (volumes_path), r'IJCSS - Progress_all.xlsx'))
 
 # get volume and issue from folder name (must be in the format 'Vol222023Ed1')
 volume = volumes_path.split(r'/')[-1].split('Vol')[1][0:2]
