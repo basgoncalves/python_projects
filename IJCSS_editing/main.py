@@ -102,9 +102,7 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
                     # copy pdf 
                     document_name = os.path.basename(submit_file_path_final)
                     destination_path = os.path.join(submit_folder_per_paper,'{}'.format(document_name))
-                    shutil.copyfile(content_spec_path, destination_path)
-                    
-    
+                    shutil.copyfile(submit_file_path_final, destination_path)
 
 def extract_text_between_abstract_and_keywords(doc_path):
     doc = docx.Document(doc_path)
