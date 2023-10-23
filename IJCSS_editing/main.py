@@ -31,18 +31,12 @@ def please_close_word():
             # Press Alt+F4 to close all Word documents
             for window in word_windows:
                 window.close()
-            # pyautogui.hotkey("alt", "f4")
-    
-    # No Word documents are open
-    pyautogui.alert("All Word documents are closed.")
-
-please_close_word()
+                pyautogui.alert("All Word documents are closed.")
 
 def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
     
     # get volume and issue from folder name (must be in the format 'Vol222023Ed1')
-    volume = volumes_path.split(r'/')[-1].split('Vol')[1][0:2]
-    
+    volume = volumes_path.split(r'/')[-1].split('Vol')[1][0:2]   
     issue = volumes_path.split(r'/')[-1].split('Ed')[1][0:1]
 
     # create final submission folder (will be used to zip in the end)
@@ -87,11 +81,31 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
                     
                     shutil.copyfile(pdf_file_path_final, submit_file_path_final)    # copy pdf to the final location: "4-PDF_ausPostScript"
                     
-                DOI = os.path.splitext(os.path.basename(word_file_path))[0]
-                output_document_path = os.path.join(submit_folder, 'Content Specification_{}.docx'.format(DOI))
-                add_to_content_specification(volumes_path,DOI,output_document_path)
+                    DOI = os.path.splitext(os.path.basename(word_file_path))[0]
+                    content_spec_path = os.path.join(submit_folder, 'Content Specification_{}.docx'.format(DOI))
+                    add_to_content_specification(volumes_path,DOI,content_spec_path)
+                    
+                    # copy files to a single folder in case there is a need to uplad individually
+                    las_digits_DOI = DOI.split("-")[-1]
+                    
+                    submit_folder_per_paper = os.path.dirname(submit_folder) + '_' + las_digits_DOI
+                    
+                    # submit_folder_per_paper = os.path.join(submit_folder,'{}'.format(las_digits_DOI))
+                    if not os.path.isdir(submit_folder_per_paper):
+                        os.makedirs(submit_folder_per_paper)
+                        
+                    # copy content spec
+                    document_name = os.path.basename(content_spec_path)
+                    destination_path = os.path.join(submit_folder_per_paper,'{}'.format(document_name))
+                    shutil.copyfile(content_spec_path, destination_path)
+                    
+                    # copy pdf 
+                    document_name = os.path.basename(submit_file_path_final)
+                    destination_path = os.path.join(submit_folder_per_paper,'{}'.format(document_name))
+                    shutil.copyfile(content_spec_path, destination_path)
+                    
+    
 
-# Function to extract text between "abstract" and "KEYWORDS"
 def extract_text_between_abstract_and_keywords(doc_path):
     doc = docx.Document(doc_path)
     start_extraction = False
@@ -108,7 +122,6 @@ def extract_text_between_abstract_and_keywords(doc_path):
 
     return "\n".join(extracted_text)
 
-# Function to extract the first 2 lines of a document
 def extract_first_two_lines(doc_path):
     doc = docx.Document(doc_path)
     first_line = []
@@ -120,7 +133,6 @@ def extract_first_two_lines(doc_path):
 
     return first_line
 
-# Function to modify a document
 def modify_document(input_doc_path, output_doc_path, new_text,line_starts_with):
     doc = docx.Document(input_doc_path)
     
@@ -160,8 +172,9 @@ def add_to_content_specification(volumes_path,DOI,output_document_path):
     modify_document(output_document_path, output_document_path, first_lines_text[0],"Title: ")
     modify_document(output_document_path, output_document_path, first_lines_text[1],"Author(s): ")
     modify_document(output_document_path, output_document_path, first_lines_text[2],"Affiliation(s): ")
+    
 
-
+please_close_word()
 
 # if you want old files to be converted again, change to "True"
 re_convert_files_that_already_exist = False
@@ -169,10 +182,8 @@ re_convert_files_that_already_exist = False
 # User select the folder of the volume you want to convert folders 
 volumes_path = askdirectory(initialdir=r'Z:\iacss\IACSS_IJCSS\IJCSS\Volumes')
 
-# open the progress file 
 os.startfile(os.path.join(os.path.dirname (volumes_path), r'IJCSS - Progress_all.xlsx'))
 
-# create final pdf
 create_final_pdf(volumes_path,re_convert_files_that_already_exist)
 
 
