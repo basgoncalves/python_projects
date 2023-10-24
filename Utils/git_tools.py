@@ -14,10 +14,7 @@ def import_repos():
                 r'C:\Git\MSKmodelling',
                 r'C:\Git\msk_modelling_python',
                 r'C:\Git\research_data',
-                r'C:\Git\Kira_MSc_data',
-                r'C:\Git\OpenSimOutputToMAT-main',
-                r'C:\Git\Personal',
-                r'C:\Git\BIP_OpenSim_Hungarian_USports']
+                r'C:\Git\Personal']
     else:
         repos = []
         print('Current machine not configured. Add folder paths to the script or perform "git pull manually"')
