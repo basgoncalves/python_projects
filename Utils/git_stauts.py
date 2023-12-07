@@ -54,10 +54,6 @@ def git_status():
 exist_changes_to_commit = git_status()
 
 if exist_changes_to_commit == 0:
-    with open(summary_txt_file, 'a') as f:
-        f.write('======================================================================= \n')
-        f.write('all repos are up to date')
-        f.write('======================================================================= \n')
     print('all repos are up to date')
     
 else:
