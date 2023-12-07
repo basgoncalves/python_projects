@@ -69,5 +69,13 @@ else:
         
         # re-run status to ensure no commits are missing 
         exist_changes_to_commit = git_status()
-    
-os.startfile(summary_txt_file)
+
+
+# Check if the file is empty
+if os.path.getsize(summary_txt_file) == 0:
+    # Delete the file if it's empty
+    os.remove(summary_txt_file)
+else:
+    # Open the file using the default program
+    os.startfile(summary_txt_file)
+
