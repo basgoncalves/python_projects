@@ -69,7 +69,7 @@ else:
 print(os.path.getsize(summary_txt_file))
 
 # Check if the file is empty
-if os.path.getsize(summary_txt_file) < 1:
+if os.path.getsize(summary_txt_file) < 5:
     # Delete the file if it's empty
     os.remove(summary_txt_file)
 else:
