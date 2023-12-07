@@ -68,7 +68,7 @@ else:
 
 
 # Check if the file is empty
-if os.path.getsize(summary_txt_file) == 0:
+if os.path.getsize(summary_txt_file) < 1:
     # Delete the file if it's empty
     os.remove(summary_txt_file)
 else:
