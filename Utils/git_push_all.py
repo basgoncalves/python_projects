@@ -12,8 +12,12 @@ repos = import_repos()
 # loop over the list of repos
 for i in range(len(repos)):
     repo_directory = repos[i]
-    os.chdir(repo_directory)
-    
+    try:         
+        os.chdir(repo_directory)
+    except:
+        print([repo_directory + " does not exist."])
+        continue
+
     time.sleep(0.5)
     output = subprocess.run(["git", "status"], cwd=repo_directory, stdout=subprocess.PIPE, stderr=subprocess.PIPE) 
     if output.stdout is not None and not str(output.stdout).__contains__('working tree clean'):
