@@ -26,31 +26,38 @@ def update_renaming_options(folder_path, renaming_options):
             renaming_options[new_key] = file_type
     return renaming_options
 
-# Function to convert camel case to snake case
-def convert_camel_case_to_snake_case(input_string):
+# Function to convert camel case to snake case for the last name in the path
+def convert_camel_case_to_snake_case(input_path):
+    # Extract the last component of the path
+    head, tail = os.path.split(input_path)
+    
     # Use a regular expression to find occurrences of lowercase followed by uppercase
     pattern = re.compile(r'([a-z])([A-Z])')
     
     # Replace occurrences with lowercase followed by underscore and lowercase
-    converted_string = re.sub(pattern, r'\1_\2', input_string)
+    converted_tail = re.sub(pattern, r'\1_\2', tail)
     
     # Convert the entire string to lowercase
-    converted_string = converted_string.lower()
+    converted_tail = converted_tail.lower()
     
-    return converted_string
+    # Join the modified tail with the head to get the full path
+    converted_path = os.path.join(head, converted_tail)
+    
+    return converted_path
 
 #  Function to rename files and folders
-def rename_to_lowercase(old_name, renaming_options):
-    new_name = convert_camel_case_to_snake_case(old_name)
+def rename_to_lowercase(old_path, renaming_options):
+    new_path = convert_camel_case_to_snake_case(old_path)
 
     # Replace the old file extension with the new file extension
     for old, new in renaming_options.items():
-        new_name = new_name.replace(old, new)
+        new_path = new_path.replace(old, new)
 
-    if os.path.exists(new_name): # If the new name already exists
+    # If the new name already exists and is the same as old, don't rename 
+    if os.path.exists(new_path) and old_path == new_path: 
         return
 
-    os.rename(old_name, new_name)
+    os.rename(old_path, new_path)
 
 # Function to rename files and folders
 def rename_files_and_folders(renaming_options=dict()):
@@ -70,12 +77,14 @@ def rename_files_and_folders(renaming_options=dict()):
             files = [f for f in files if not f.startswith('__')] # Remove items starting with '__' from files
                             
             for dir in dirs:
-                old_name = os.path.join(root, dir)
-                rename_to_lowercase(old_name,renaming_options)
+                old_path = os.path.join(root, dir)
+                rename_to_lowercase(old_path,renaming_options)
+                if dir == 'Presentation':
+                    a=2
                 
             for file in files:
-                old_name = os.path.join(root, file)
-                rename_to_lowercase(old_name,renaming_options)
+                old_path = os.path.join(root, file)
+                rename_to_lowercase(old_path,renaming_options)
 
 if __name__ == "__main__":
     # Function to rename files and folders

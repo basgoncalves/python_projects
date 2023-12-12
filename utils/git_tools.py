@@ -11,7 +11,7 @@ def import_repos():
     if name_pc == 'Bas-PC' or name_pc == 'DESKTOP-8KRF896':
         repos =[r'C:\Git\research_documents',
                 r'C:\Git\python_projects',
-                r'C:\Git\MSKmodelling',
+                r'C:\Git\msk_modelling_matlab',
                 r'C:\Git\msk_modelling_python',
                 r'C:\Git\research_data',
                 r'C:\Git\personal']
