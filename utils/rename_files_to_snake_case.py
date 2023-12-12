@@ -46,8 +46,11 @@ def convert_camel_case_to_snake_case(old_path,renaming_options):
     new_path = os.path.join(head, converted_tail)
     
     # Replace the old file extension with the new file extension
-    for old, new in renaming_options.items():
-        new_path = new_path.replace(old, new)
+    # Construct a regular expression pattern for matching each old substring at the end
+    pattern = re.compile('|'.join(re.escape(old) + '$' for old in renaming_options.keys()))
+        
+    # Replace occurrences of old substrings at the end with the corresponding new values
+    new_path = pattern.sub(lambda match: renaming_options[match.group(0)], new_path)
 
     # If the new name already exists and is the same as old, don't rename 
     if os.path.exists(new_path) and old_path == new_path: 
