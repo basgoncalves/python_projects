@@ -11,6 +11,8 @@ def find_file_types(folder_path):
         dirs[:] = [d for d in dirs if not d.startswith('.')]
         for file in files:
             _, file_ext = os.path.splitext(file)
+            if not file_ext:
+                continue
             file_types.add(file_ext)
     return file_types
 
@@ -27,9 +29,9 @@ def update_renaming_options(folder_path, renaming_options):
     return renaming_options
 
 # Function to convert camel case to snake case for the last name in the path
-def convert_camel_case_to_snake_case(input_path):
+def convert_camel_case_to_snake_case(old_path,renaming_options):
     # Extract the last component of the path
-    head, tail = os.path.split(input_path)
+    head, tail = os.path.split(old_path)
     
     # Use a regular expression to find occurrences of lowercase followed by uppercase
     pattern = re.compile(r'([a-z])([A-Z])')
@@ -41,14 +43,8 @@ def convert_camel_case_to_snake_case(input_path):
     converted_tail = converted_tail.lower()
     
     # Join the modified tail with the head to get the full path
-    converted_path = os.path.join(head, converted_tail)
+    new_path = os.path.join(head, converted_tail)
     
-    return converted_path
-
-#  Function to rename files and folders
-def rename_to_lowercase(old_path, renaming_options):
-    new_path = convert_camel_case_to_snake_case(old_path)
-
     # Replace the old file extension with the new file extension
     for old, new in renaming_options.items():
         new_path = new_path.replace(old, new)
@@ -58,7 +54,7 @@ def rename_to_lowercase(old_path, renaming_options):
         return
 
     os.rename(old_path, new_path)
-
+    
 # Function to rename files and folders
 def rename_files_and_folders(renaming_options=dict()):
     root = tk.Tk()
@@ -78,13 +74,13 @@ def rename_files_and_folders(renaming_options=dict()):
                             
             for dir in dirs:
                 old_path = os.path.join(root, dir)
-                rename_to_lowercase(old_path,renaming_options)
+                convert_camel_case_to_snake_case(old_path,renaming_options)
                 if dir == 'Presentation':
                     a=2
                 
             for file in files:
                 old_path = os.path.join(root, file)
-                rename_to_lowercase(old_path,renaming_options)
+                convert_camel_case_to_snake_case(old_path,renaming_options)
 
 if __name__ == "__main__":
     # Function to rename files and folders
