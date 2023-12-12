@@ -40,13 +40,16 @@ def convert_camel_case_to_snake_case(input_string):
     return converted_string
 
 #  Function to rename files and folders
-def rename_to_lowercase(old_name,renaming_options):
+def rename_to_lowercase(old_name, renaming_options):
     new_name = convert_camel_case_to_snake_case(old_name)
-    
-    # Replace the old file extension with the new file extension 
+
+    # Replace the old file extension with the new file extension
     for old, new in renaming_options.items():
         new_name = new_name.replace(old, new)
-                        
+
+    if os.path.exists(new_name): # If the new name already exists
+        return
+
     os.rename(old_name, new_name)
 
 # Function to rename files and folders
@@ -65,15 +68,14 @@ def rename_files_and_folders(renaming_options=dict()):
             
             dirs[:] = [d for d in dirs if not d.startswith('__')] # Remove items starting with '__' from dirs
             files = [f for f in files if not f.startswith('__')] # Remove items starting with '__' from files
-            
-            for file in files:
-                old_name = os.path.join(root, file)
-                rename_to_lowercase(old_name,renaming_options)
-                
+                            
             for dir in dirs:
                 old_name = os.path.join(root, dir)
                 rename_to_lowercase(old_name,renaming_options)
-
+                
+            for file in files:
+                old_name = os.path.join(root, file)
+                rename_to_lowercase(old_name,renaming_options)
 
 if __name__ == "__main__":
     # Function to rename files and folders
