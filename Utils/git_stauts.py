@@ -54,10 +54,6 @@ def git_status():
 exist_changes_to_commit = git_status()
 
 if exist_changes_to_commit == 0:
-    with open(summary_txt_file, 'a') as f:
-        f.write('======================================================================= \n')
-        f.write('all repos are up to date')
-        f.write('======================================================================= \n')
     print('all repos are up to date')
     
 else:
@@ -69,5 +65,12 @@ else:
         
         # re-run status to ensure no commits are missing 
         exist_changes_to_commit = git_status()
-    
-os.startfile(summary_txt_file)
+
+# Check if the file is empty
+if os.path.getsize(summary_txt_file) < 5:
+    # Delete the file if it's empty
+    os.remove(summary_txt_file)
+else:
+    # Open the file using the default program
+    os.startfile(summary_txt_file)
+
