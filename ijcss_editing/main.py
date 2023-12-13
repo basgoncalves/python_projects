@@ -38,7 +38,7 @@ def please_close_word():
         # Ask the user to save and close all documents
         result = pyautogui.confirm(
             "Some Word documents are still open. Do you want to save and close them?",
-            buttons=["Yes", "No"]
+            buttons=["Yes", "No", "Cancel"]
         )
         
         if result == "Yes":
@@ -47,6 +47,11 @@ def please_close_word():
             for window in word_windows:
                 window.close()
                 pyautogui.alert("All Word documents are closed.")
+        elif result == "Cancel":
+            return False
+           
+    # if function reaches this point, it means that all Word documents are closed
+    return True
 
 def extract_text_between_abstract_and_keywords(doc_path):
     doc = docx.Document(doc_path)
@@ -188,8 +193,9 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
 
 
 if __name__ == '__main__':    
-    please_close_word()
-
+    out = please_close_word()
+    if out == False:
+        exit()
     # if you want old files to be converted again, change to "True"
     re_convert_files_that_already_exist = False
 
