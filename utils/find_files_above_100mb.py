@@ -8,7 +8,7 @@ current_path = os.getcwd()
 
 # User select the folder of the volume you want to convert folders
 target_path = askdirectory(initialdir=current_path)
-
+print(target_path)
 size_bytes = pd.DataFrame(columns=["file", "size"])
 count = -1
 
