@@ -1,5 +1,5 @@
 # USAGE:
-# just run the code and you will be asked to select the Volume folder 
+# run the code and you will be asked to select the Volume folder 
 # The assumption is that you have access to UniVienna Shared Drive "Z:\iacss\IACSS_IJCSS\IJCSS\Volumes"
 # If you don't have access to it ask the IT office
 
@@ -14,6 +14,21 @@ import shutil
 import textract
 import docx
 
+from tkinter import filedialog
+
+def check_volumes_path():
+    volumes_path = r'Z:\iacss\IACSS_IJCSS\IJCSS\Volumes'
+    if not os.path.exists(volumes_path):
+        volumes_path = filedialog.askdirectory(title="Select path of volumes folder")
+    print("Volumes path:", volumes_path)
+    return volumes_path
+
+def loop_through_doi_txt():    
+    file_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'doi_to_check.txt')
+    with open(file_path, 'r') as file:
+        for line in file:
+            print(line)          
+
 def please_close_word():
     import pyautogui
     import time
@@ -23,7 +38,7 @@ def please_close_word():
         # Ask the user to save and close all documents
         result = pyautogui.confirm(
             "Some Word documents are still open. Do you want to save and close them?",
-            buttons=["Yes", "No"]
+            buttons=["Yes", "No", "Cancel"]
         )
         
         if result == "Yes":
@@ -32,6 +47,78 @@ def please_close_word():
             for window in word_windows:
                 window.close()
                 pyautogui.alert("All Word documents are closed.")
+        elif result == "Cancel":
+            return False
+           
+    # if function reaches this point, it means that all Word documents are closed
+    return True
+
+def extract_text_between_abstract_and_keywords(doc_path):
+    doc = docx.Document(doc_path)
+    start_extraction = False
+    extracted_text = []
+
+    for paragraph in doc.paragraphs:
+        if "abstract" in paragraph.text.lower():
+            start_extraction = True
+            continue
+        if "keywords" in paragraph.text.lower() and start_extraction:
+            break
+        if start_extraction:
+            extracted_text.append(paragraph.text)
+
+    return "\n".join(extracted_text)
+
+def extract_first_two_lines(doc_path):
+    doc = docx.Document(doc_path)
+    first_line = []
+
+    for i, paragraph in enumerate(doc.paragraphs):
+        first_line.append(paragraph.text)
+        if i >= 2:
+            break
+
+    return first_line
+
+def modify_document(input_doc_path, output_doc_path, new_text,line_starts_with):
+    doc = docx.Document(input_doc_path)
+    
+    # Find the paragraph that starts with line_starts_with and delete everything after it
+    for paragraph in doc.paragraphs:
+        
+        if paragraph.text.startswith(line_starts_with):
+            paragraph.clear()
+            run = paragraph.add_run(line_starts_with)
+            bold_format = run.font
+            bold_format.bold = True
+            paragraph.add_run(new_text)
+            break
+
+    # Save the modified document
+    doc.save(output_doc_path)
+
+def add_to_content_specification(volumes_path,DOI,output_document_path):
+    
+    # output_document_path = os.path.join(submit_folder, 'Content Specification_{}.docx'.format(DOI))
+    word_path = os.path.join(volumes_path,'3-Uploads/1-Word')
+    main_document = os.path.join(word_path, '{}.docx'.format(DOI))
+    template_content_specification = os.path.join(volumes_path, 'Template_Content Specification.docx')
+    # output_document_path = r'Z:\iacss\IACSS_IJCSS\IJCSS\Volumes\Vol222023Ed2\3-Uploads\10516-Volume22-Issue2c\Content Specification.docx'
+
+    # filename and DOI
+    filename =  DOI + '.pdf'
+    modify_document(template_content_specification, output_document_path, filename,"Filename: ")
+    modify_document(output_document_path, output_document_path, DOI,"DOI: ")
+
+    # abstract
+    extracted_text = extract_text_between_abstract_and_keywords(main_document)
+    modify_document(output_document_path, output_document_path, extracted_text,"Abstract: ")
+
+    # title and authors
+    first_lines_text = extract_first_two_lines(main_document)
+    modify_document(output_document_path, output_document_path, first_lines_text[0],"Title: ")
+    modify_document(output_document_path, output_document_path, first_lines_text[1],"Author(s): ")
+    modify_document(output_document_path, output_document_path, first_lines_text[2],"Affiliation(s): ")
 
 def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
     
@@ -104,85 +191,21 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
                     destination_path = os.path.join(submit_folder_per_paper,'{}'.format(document_name))
                     shutil.copyfile(submit_file_path_final, destination_path)
 
-def extract_text_between_abstract_and_keywords(doc_path):
-    doc = docx.Document(doc_path)
-    start_extraction = False
-    extracted_text = []
 
-    for paragraph in doc.paragraphs:
-        if "abstract" in paragraph.text.lower():
-            start_extraction = True
-            continue
-        if "keywords" in paragraph.text.lower() and start_extraction:
-            break
-        if start_extraction:
-            extracted_text.append(paragraph.text)
+if __name__ == '__main__':    
+    out = please_close_word()
+    if out == False:
+        exit()
+    # if you want old files to be converted again, change to "True"
+    re_convert_files_that_already_exist = False
 
-    return "\n".join(extracted_text)
+    # User select the folder of the volume you want to convert folders 
+    volumes_path = check_volumes_path()
+    edition_path = askdirectory(initialdir=r'Z:\iacss\IACSS_IJCSS\IJCSS\Volumes')
 
-def extract_first_two_lines(doc_path):
-    doc = docx.Document(doc_path)
-    first_line = []
+    os.startfile(os.path.join(os.path.dirname (edition_path), r'IJCSS - Progress_all.xlsx'))
 
-    for i, paragraph in enumerate(doc.paragraphs):
-        first_line.append(paragraph.text)
-        if i >= 2:
-            break
-
-    return first_line
-
-def modify_document(input_doc_path, output_doc_path, new_text,line_starts_with):
-    doc = docx.Document(input_doc_path)
-    
-    # Find the paragraph that starts with line_starts_with and delete everything after it
-    for paragraph in doc.paragraphs:
-        
-        if paragraph.text.startswith(line_starts_with):
-            paragraph.clear()
-            run = paragraph.add_run(line_starts_with)
-            bold_format = run.font
-            bold_format.bold = True
-            paragraph.add_run(new_text)
-            break
-
-    # Save the modified document
-    doc.save(output_doc_path)
-
-def add_to_content_specification(volumes_path,DOI,output_document_path):
-    
-    # output_document_path = os.path.join(submit_folder, 'Content Specification_{}.docx'.format(DOI))
-    word_path = os.path.join(volumes_path,'3-Uploads/1-Word')
-    main_document = os.path.join(word_path, '{}.docx'.format(DOI))
-    template_content_specification = os.path.join(volumes_path, 'Template_Content Specification.docx')
-    # output_document_path = r'Z:\iacss\IACSS_IJCSS\IJCSS\Volumes\Vol222023Ed2\3-Uploads\10516-Volume22-Issue2c\Content Specification.docx'
-
-    # filename and DOI
-    filename =  DOI + '.pdf'
-    modify_document(template_content_specification, output_document_path, filename,"Filename: ")
-    modify_document(output_document_path, output_document_path, DOI,"DOI: ")
-
-    # abstract
-    extracted_text = extract_text_between_abstract_and_keywords(main_document)
-    modify_document(output_document_path, output_document_path, extracted_text,"Abstract: ")
-
-    # title and authors
-    first_lines_text = extract_first_two_lines(main_document)
-    modify_document(output_document_path, output_document_path, first_lines_text[0],"Title: ")
-    modify_document(output_document_path, output_document_path, first_lines_text[1],"Author(s): ")
-    modify_document(output_document_path, output_document_path, first_lines_text[2],"Affiliation(s): ")
-    
-
-please_close_word()
-
-# if you want old files to be converted again, change to "True"
-re_convert_files_that_already_exist = False
-
-# User select the folder of the volume you want to convert folders 
-volumes_path = askdirectory(initialdir=r'Z:\iacss\IACSS_IJCSS\IJCSS\Volumes')
-
-os.startfile(os.path.join(os.path.dirname (volumes_path), r'IJCSS - Progress_all.xlsx'))
-
-create_final_pdf(volumes_path,re_convert_files_that_already_exist)
+    create_final_pdf(edition_path,re_convert_files_that_already_exist)
 
 
 # end
