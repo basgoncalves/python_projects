@@ -161,23 +161,47 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
                 if not os.path.isfile(submit_file_path_final) or re_convert_files_that_already_exist == True:
                     
                     convert(word_file_path, pdf_file_path)                          # convert to PDF: "1-Word"
+
+                    ghostscript_path = r"C:\Program Files\gs\gs10.02.1\bin\gswin64c.exe"  # Update with your actual path
+
+                    if not os.path.isfile(ghostscript_path):
+                        print('\n \n \n \n ERROR: Ghostscript path not found in {}'.format(ghostscript_path))
+                        print('Please ensure Ghostscrpt is installed or update the path in the script.')
+                        exit()
+
+                    # convert to post script: "2-PDF_ausWord"
+                    try:
+                        try:
+                            subprocess.call(['pdf2ps', pdf_file_path, ps_file_path])        # convert to post script: "2-PDF_ausWord"
+                        except:
+                            subprocess.call([ghostscript_path, '-sDEVICE=ps2write', '-o', ps_file_path, pdf_file_path])
+                    except  Exception as e:
+                        print('Error converting to post script: {}'.format(e))
+                        exit()
+
+                    # convert to pdf again: "3-PostScript"
+                    try:
+                        try:    
+                            subprocess.call(['ps2pdf', ps_file_path, pdf_file_path_final])  # convert to pdf again: "3-PostScript"
+                        except:
+                            subprocess.call([ghostscript_path, '-sDEVICE=pdfwrite', '-o', pdf_file_path_final, ps_file_path])
+                    except  Exception as e:
+                        print('Error converting to pdf again: {}'.format(e))
+                        exit()
                     
-                    subprocess.call(['pdf2ps', pdf_file_path, ps_file_path])        # convert to post script: "2-PDF_ausWord"
+                    # copy pdf to the final location: "4-PDF_ausPostScript"
+                    shutil.copyfile(pdf_file_path_final, submit_file_path_final)    
                     
-                    subprocess.call(['ps2pdf', ps_file_path, pdf_file_path_final])  # convert to pdf again: "3-PostScript"
-                    
-                    shutil.copyfile(pdf_file_path_final, submit_file_path_final)    # copy pdf to the final location: "4-PDF_ausPostScript"
-                    
+                    # create content specification
                     DOI = os.path.splitext(os.path.basename(word_file_path))[0]
                     content_spec_path = os.path.join(submit_folder, 'Content Specification_{}.docx'.format(DOI))
                     add_to_content_specification(volumes_path,DOI,content_spec_path)
                     
                     # copy files to a single folder in case there is a need to uplad individually
                     las_digits_DOI = DOI.split("-")[-1]
-                    
                     submit_folder_per_paper = os.path.dirname(submit_folder) + '_' + las_digits_DOI
                     
-                    # submit_folder_per_paper = os.path.join(submit_folder,'{}'.format(las_digits_DOI))
+                    # create folder if it does not exist
                     if not os.path.isdir(submit_folder_per_paper):
                         os.makedirs(submit_folder_per_paper)
                         
