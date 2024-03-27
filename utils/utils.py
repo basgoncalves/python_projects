@@ -122,7 +122,6 @@ def create_template():
         print(e)
         exit()
 
-
 # print names (NOT AN OPTION)
 def print_option_names():
     options = [name for name in globals() if isinstance(globals()[name], Option)]
