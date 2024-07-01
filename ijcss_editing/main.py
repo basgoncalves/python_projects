@@ -126,6 +126,8 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
     volume = volumes_path.split(r'/')[-1].split('Vol')[1][0:2]   
     issue = volumes_path.split(r'/')[-1].split('Ed')[1][0:1]
 
+    ghostscript_path = r"C:\Program Files\gs\gs10.02.1\bin\gswin64c.exe"  # Update with your actual path
+
     # create final submission folder (will be used to zip in the end)
     submit_folder = os.path.join(volumes_path, r'3-Uploads\10516-Volume{}-Issue{}'.format(volume,issue), '')
 
@@ -162,8 +164,6 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
                     
                     convert(word_file_path, pdf_file_path)                          # convert to PDF: "1-Word"
 
-                    ghostscript_path = r"C:\Program Files\gs\gs10.02.1\bin\gswin64c.exe"  # Update with your actual path
-
                     if not os.path.isfile(ghostscript_path):
                         print('\n \n \n \n ERROR: Ghostscript path not found in {}'.format(ghostscript_path))
                         print('Please ensure Ghostscrpt is installed or update the path in the script.')
@@ -181,7 +181,7 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
 
                     # convert to pdf again: "3-PostScript"
                     try:
-                        try:    
+                        try:
                             subprocess.call(['ps2pdf', ps_file_path, pdf_file_path_final])  # convert to pdf again: "3-PostScript"
                         except:
                             subprocess.call([ghostscript_path, '-sDEVICE=pdfwrite', '-o', pdf_file_path_final, ps_file_path])
