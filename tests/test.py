@@ -1,72 +1,72 @@
-import numpy as np
+import os
+import tkinter as tk
+from tkinter import messagebox
+import json
+import msk_modelling_python.src.mri.test_print_xlsx as print_xlsx
 
+def add_coverage_to_xlsx():
+    current_file_path = os.path.dirname(os.path.abspath(__file__))  
+    settings_json = os.path.join(current_file_path,"settings.json")
 
+    def save_settings_to_file(settings_json, acetabular_coverage, path_xlsx, sheet_name):
+        # Save settings to a JSON file
+        settings = {
+            "acetabular_coverage": acetabular_coverage.get(),
+            "path_xlsx": path_xlsx.get(),
+            "sheet_name": sheet_name.get()
+        }
+        
+        with open(settings_json, "w") as file:
+            json.dump(settings, file, indent=4)
 
+        messagebox.showinfo("Settings Saved", "Settings have been saved to settings.json")
 
-# full / PD
-ap_ratio = 97/176
-ml_ratio = 58/157
-v_ratio = 12/49
+    def load_settings_from_file(settings_json):
+        try:
+            with open(settings_json, "r") as file:
+                settings = json.load(file)
+                return settings
+        except FileNotFoundError:
+            return None
+        
+    def on_button_click():
+        print_xlsx.add_coverages_to_xlsx(acetabular_coverage.get(),  path_xlsx.get(), sheet_name.get())
+        save_settings_to_file(settings_json, acetabular_coverage, path_xlsx, sheet_name)
+        root.destroy()  # Close the window
 
-ap_ratio2 = 256/768
-ml_ratio2 = 774/785
-v_ratio2 = 80/250
+    def create_label_entry(root, text, previous_value=None):
+        label = tk.Label(root, text=text)
+        label.pack(pady=5)
+        entry = tk.Entry(root, width=60)
+        entry.pack(pady=5)
+        entry.insert(0, previous_value)
+        return entry
 
-print('ap_ratio:', ap_ratio)
-print('ml_ratio:', ml_ratio)
-print('v_ratio:', v_ratio)
+    def create_button(root, text, command):
+        button = tk.Button(root, text=text, command=command)
+        button.pack(pady=20)
 
-# Assuming your point coordinates are stored in NumPy arrays
-point_A_norm = np.array([-218, 130, 53])
-point_B_norm = np.array([225, 126, 53])
+    # Create the main window
+    root = tk.Tk()
+    root.title("Simple GUI")
+    root.geometry("400x300")  # Set the window size to 400x300
 
-# Calculate the transformation vector
-transformation_vector = point_B_norm - point_A_norm
+    if load_settings_from_file(settings_json) == None:
+        acetabular_coverage = create_label_entry(root, "Enter acetabular_coverage path:")
+        path_xlsx = create_label_entry(root, "Enter path for xlsx file:")
+        sheet_name = create_label_entry(root, "Enter sheet name:")
+    else:
+        settings = load_settings_from_file(settings_json)
+        acetabular_coverage = create_label_entry(root, "Enter acetabular_coverage path:", settings["acetabular_coverage"])
+        path_xlsx = create_label_entry(root, "Enter path for xlsx file:", settings["path_xlsx"])
+        sheet_name = create_label_entry(root, "Enter sheet name:", settings["sheet_name"])
 
-point_A_dis = np.array([3, 124, -0.01])
-point_B_dis = np.array([257, 124, 0.6])
+    create_button(root, "Run Function", on_button_click)
 
-# Apply transformation to DIS points
-point_A_converted = point_A_dis + transformation_vector
-point_B_converted = point_B_dis + transformation_vector
-
-scaling_factor = np.linalg.norm(point_A_converted - point_B_converted) / np.linalg.norm(point_A_norm - point_B_norm)
-
-scaled_point_A_dis = point_A_dis / scaling_factor
-scaled_point_B_dis = point_B_dis / scaling_factor
-
-print('point_A_converted:', point_A_converted)
-print('point_B_converted:', point_B_converted)
-
-print('Distance DIS:', np.linalg.norm(point_A_dis - point_B_dis))
-print('Distance NORM:', np.linalg.norm(point_A_norm - point_B_norm))
-print('Distance CONV:', np.linalg.norm(point_A_converted - point_B_converted))
-print('Scaling factor:', scaling_factor)
-print('Distance scaled DIS:', np.linalg.norm(scaled_point_A_dis - scaled_point_B_dis))
-
-
-print('point_A_converted:', point_A_converted)
-print('point_B_converted:', point_B_converted)
-print('point_A_Norm:', point_A_norm)
-print('point_B_Norm:', point_B_norm)
-
-exit()
-
-full_HJC = np.array([82.48,	126.9,	30.8])
-full_GT = np.array([52.1,	149.8,	40.9])
-full_LC = np.array([-77.4,	-245.9,	-0.5])
-
-# calculate difference between full_HJC and full_GT
-distance = np.linalg.norm(full_LC - full_GT)
-print('distance full:' , distance)
-
-
-PD_HJC = np.array([78.84546921853715,	3.2008812601033867,	-13.742165630039107])
-PD_GT = np.array([125.70271401673622,	34.65580310508881,	-54.47454710372199,])
-
-# calculate difference between PD_HJC and PD_GT
-distance = np.linalg.norm(PD_HJC - PD_GT)
-print('distance PD:' , distance)
-
-
-
+    # Run the application
+    root.mainloop()
+    
+    
+        
+if __name__ == "__main__":
+    add_coverage_to_xlsx()
