@@ -1,4 +1,0 @@
-matplotlib==3.7.1
-numpy==1.24.4
-numpy_stl==3.1.1
-wheel

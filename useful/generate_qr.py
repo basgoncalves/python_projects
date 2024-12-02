@@ -8,7 +8,7 @@ def generate_qr_code(link, filename="qr_code.png"):
     link: The URL or text to be encoded in the QR code.
     filename: The name of the output image file.
   """
-
+  
   # Create a QR code instance
   qr = qrcode.QRCode(
       version=1,  # Adjust version as needed for larger QR codes
