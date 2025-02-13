@@ -3,7 +3,7 @@
 # The assumption is that you have access to UniVienna Shared Drive "Z:\iacss\IACSS_IJCSS\IJCSS\Volumes"
 # If you don't have access to it ask the IT office
 
-from . import install_needed_pkg
+# from . import install_needed_pkg
 import subprocess 
 import aspose.words as aw
 import os
