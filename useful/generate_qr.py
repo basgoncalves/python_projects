@@ -32,7 +32,7 @@ def generate_qr_code(link, filename="qr_code.png"):
   os.system(f"explorer /select,{filename}")
 
 if __name__ == "__main__":
-  link = "https://docs.google.com/forms/d/e/1FAIpQLSdEL-jZ1iWWCTmnfswsmvC49qHnobcSwHVVfYdd7-QNLoGR_g/viewform?usp=sf_link"
+  link = "https://photos.app.goo.gl/HhRTjt4Y7YoSmhx68"
   current_dir = os.path.dirname(os.path.abspath(__file__))
-  filename = os.path.join(current_dir, "qr_code.png")
+  filename = os.path.join(current_dir, "Us_cute.png")
   generate_qr_code(link, filename)
