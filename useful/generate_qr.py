@@ -32,7 +32,7 @@ def generate_qr_code(link, filename="qr_code.png"):
   os.system(f"explorer /select,{filename}")
 
 if __name__ == "__main__":
-  link = "https://photos.app.goo.gl/HhRTjt4Y7YoSmhx68"
+  link = "https://github.com/basgoncalves/opensim_tutorial"
   current_dir = os.path.dirname(os.path.abspath(__file__))
   filename = os.path.join(current_dir, "Us_cute.png")
   generate_qr_code(link, filename)
