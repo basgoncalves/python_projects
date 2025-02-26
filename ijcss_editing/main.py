@@ -215,6 +215,24 @@ def create_final_pdf(volumes_path,re_convert_files_that_already_exist):
                     destination_path = os.path.join(submit_folder_per_paper,'{}'.format(document_name))
                     shutil.copyfile(submit_file_path_final, destination_path)
 
+def rename_doc(doc_path):
+    doc = docx.Document(doc_path)
+    
+    # find doi
+    doi = None
+    for paragraph in doc.paragraphs:
+        if "doi" in paragraph.text.lower():
+            doi = paragraph.text.split(":")[-1].strip()
+            break
+    # find authors
+    authors = None
+    for paragraph in doc.paragraphs:
+        if "authors" in paragraph.text.lower():
+            authors = paragraph.text.split(":")[-1].strip()
+            break
+    new_name = doi + ".docx"
+    os.rename(doc_path, os.path.join(os.path.dirname(doc_path), new_name))
+
 
 if __name__ == '__main__':    
     out = please_close_word()
