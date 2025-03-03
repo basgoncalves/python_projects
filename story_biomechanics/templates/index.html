@@ -5,24 +5,6 @@
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
-    <h1>What have you been up to?</h1>
-    <form method="POST">
-        {% for activity in activities %}
-            <label>
-                <input type="checkbox" name="activity" value="{{ activity }}"> {{ activity }}
-            </label><br>
-        {% endfor %}
-        <br>
-        <button type="submit">Save</button>
-    </form>
-
-    <h2>Your Activities:</h2>
-    <ul>
-        {% for item in selected_activities %}
-            <li>{{ item.timestamp }} - {{ ", ".join(item.activities) }}</li>
-        {% endfor %}
-    </ul>
-
     <h2>Activity Summary:</h2>
     <div id="week_plot">{{ week_plot|safe }}</div>
     <div id="month_plot">{{ month_plot|safe }}</div>
