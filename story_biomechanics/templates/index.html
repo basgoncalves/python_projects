@@ -1,49 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Activity Tracker</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <title>Mood Plotter</title>
 </head>
 <body>
-    <h2>Activity Summary:</h2>
-
+    <h1>Select a File to Plot</h1>
     <form method="POST">
-        <label>Select Users:</label><br>
-        {% for user in available_users %}
-            <input type="checkbox" name="users" value="{{ user }}" {% if user in request.form.getlist('users') %}checked{% endif %}> {{ user }}<br>
-        {% endfor %}
-        <button type="submit">Plot Selected Users</button>
+        <select name="file_select">
+            {% for file in files %}
+            <option value="{{ file }}">{{ file }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Plot</button>
     </form>
-
-    <br>
-
-    <form method="POST" action="/upload_path">
-        <label>Enter CSV File Path:</label><br>
-        <input type="text" name="csv_path"><br>
-        <button type="submit">Plot User from Path</button>
-    </form>
-
-    <br>
-
-    <div id="week_plot">{{ week_plot|safe }}</div>
-    <div id="month_plot">{{ month_plot|safe }}</div>
-    <div id="year_plot">{{ year_plot|safe }}</div>
-
-    <br>
-
-    <h2>Google Maps Activity:</h2>
-
-    <form method="POST" action="/upload_google">
-        <label>Enter Google Maps JSON Path:</label><br>
-        <input type="text" name="google_path"><br>
-        <button type="submit">Plot Google Maps Data</button>
-    </form>
-
-    <br>
-
-    <div id="google_week_plot">{{ google_week_plot|safe }}</div>
-    <div id="google_month_plot">{{ google_month_plot|safe }}</div>
-    <div id="google_year_plot">{{ google_year_plot|safe }}</div>
-
+    {% if plot_url %}
+    <h2>Mood Plot</h2>
+    <img src="data:image/png;base64,{{ plot_url }}" alt="Mood Plot">
+    {% endif %}
 </body>
 </html>

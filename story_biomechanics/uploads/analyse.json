@@ -1,0 +1,68 @@
+{
+  "function": "analyze",
+  "description": "Analyzes user activity data and generates a comparison plot.",
+  "parameters": {
+    "username": {
+      "type": "string",
+      "description": "The username for which to analyze data. Retrieved from the request's query parameters.",
+      "source": "request.args.get('username')",
+      "example": "john_doe"
+    },
+    "time_range": {
+      "type": "string",
+      "description": "The time range for the analysis. Retrieved from the request's query parameters.",
+      "source": "request.args.get('time_range')",
+      "example": "last_week"
+    },
+    "activity_col": {
+      "type": "string",
+      "description": "The column representing the activity to analyze. Retrieved from the request's query parameters.",
+      "source": "request.args.get('activity_col')",
+      "example": "steps"
+    }
+  },
+  "steps": [
+    {
+      "action": "load_all_user_data",
+      "method": "self.load_all_user_data()",
+      "description": "Loads all user data into a collection of DataFrames (all_dfs)."
+    },
+    {
+      "action": "generate_comparison_plot",
+      "method": "self.generate_comparison_plot(all_dfs, time_range, activity_col)",
+      "description": "Generates a comparison plot based on the loaded data, time range, and activity column.",
+      "input": {
+        "dataframes": "all_dfs",
+        "time_range": "time_range",
+        "activity_column": "activity_col"
+      },
+      "output": {
+        "plot_div": "The HTML div containing the generated plot."
+      }
+    },
+    {
+      "action": "render_template",
+      "method": "render_template('analyze.html', plot_div=plot_div, username=username)",
+      "description": "Renders the 'analyze.html' template with the generated plot and username.",
+      "input": {
+        "template": "'analyze.html'",
+        "variables": {
+          "plot_div": "plot_div",
+          "username": "username"
+        }
+      },
+      "output": {
+        "response": "HTML rendered page"
+      }
+    }
+  ],
+  "return": {
+    "type": "HTML",
+    "description": "The rendered HTML page containing the analysis results and plot."
+  }
+}
+
+
+
+
+
