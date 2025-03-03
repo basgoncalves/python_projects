@@ -6,8 +6,21 @@
 <body>
     <h1>Upload CSV</h1>
     <form method="POST" enctype="multipart/form-data">
-        <input type="file" name="file"><br><br>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required><br><br>
+        <label for="csv_file">Upload CSV File:</label>
+        <input type="file" name="csv_file" id="csv_file"><br><br>
+        <label for="csv_path">Or Enter CSV File Path:</label>
+        <input type="text" name="csv_path" id="csv_path"><br><br>
         <button type="submit">Upload</button>
     </form>
+
+    <h2>Existing Users:</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user.username }} - Filepath: {{ user.filepath }}</li>
+        {% endfor %}
+    </ul>
+
 </body>
 </html>

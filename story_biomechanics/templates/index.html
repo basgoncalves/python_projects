@@ -6,8 +6,44 @@
 </head>
 <body>
     <h2>Activity Summary:</h2>
+
+    <form method="POST">
+        <label>Select Users:</label><br>
+        {% for user in available_users %}
+            <input type="checkbox" name="users" value="{{ user }}" {% if user in request.form.getlist('users') %}checked{% endif %}> {{ user }}<br>
+        {% endfor %}
+        <button type="submit">Plot Selected Users</button>
+    </form>
+
+    <br>
+
+    <form method="POST" action="/upload_path">
+        <label>Enter CSV File Path:</label><br>
+        <input type="text" name="csv_path"><br>
+        <button type="submit">Plot User from Path</button>
+    </form>
+
+    <br>
+
     <div id="week_plot">{{ week_plot|safe }}</div>
     <div id="month_plot">{{ month_plot|safe }}</div>
     <div id="year_plot">{{ year_plot|safe }}</div>
+
+    <br>
+
+    <h2>Google Maps Activity:</h2>
+
+    <form method="POST" action="/upload_google">
+        <label>Enter Google Maps JSON Path:</label><br>
+        <input type="text" name="google_path"><br>
+        <button type="submit">Plot Google Maps Data</button>
+    </form>
+
+    <br>
+
+    <div id="google_week_plot">{{ google_week_plot|safe }}</div>
+    <div id="google_month_plot">{{ google_month_plot|safe }}</div>
+    <div id="google_year_plot">{{ google_year_plot|safe }}</div>
+
 </body>
 </html>
