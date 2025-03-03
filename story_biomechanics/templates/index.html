@@ -1,17 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Enter Username</title>
+    <title>Activity Tracker</title>
 </head>
 <body>
-    <h1>Enter Username</h1>
-    {% if error %}
-        <p style="color: red;">{{ error }}</p>
-    {% endif %}
+    <h1>What have you been up to?</h1>
     <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" id="username"><br><br>
-        <input type="submit" value="Submit">
+        {% for activity in activities %}
+            <label>
+                <input type="checkbox" name="activity" value="{{ activity }}"> {{ activity }}
+            </label><br>
+        {% endfor %}
+        <br>
+        <button type="submit">Save</button>
     </form>
+
+    <h2>Your Activities:</h2>
+    <ul>
+        {% for item in selected_activities %}
+            <li>{{ item.timestamp }} - {{ ", ".join(item.activities) }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>
