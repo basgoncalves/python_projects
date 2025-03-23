@@ -1,0 +1,14 @@
+{   "name": "0102223",
+    "model": "model.osim",
+    "trials": {
+        "side_step_left_1": {"start_time": 0.0, "end_time": 1.0},
+        "side_step_right_1": {"start_time": 1.0, "end_time": 2.0},
+        "sprint_1": {"start_time": 2.0, "end_time": 3.0}
+    },
+
+    "kinematics": "joint_angles.mot",
+    "moments": "joint_moments.sto",
+    "muscle_forces": "joint_forces.sto",
+    "emg": "emg.mot",
+    "joint_loads": "joint_reaction_loads.sto"
+}

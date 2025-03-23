@@ -1,0 +1,123 @@
+[2025-01-22 16:40:43.073] [warning] Failed to read 'double': property 'time_range' with input '[4.925 5.409]': the data has been ignored
+[2025-01-22 16:40:43.073] [warning] Failed to read 'double': property 'time_range' with input '[4.925 5.409]': does not contain enough values (minimum: 2, got: 0): the data (all fields) have been ignored
+[2025-01-22 16:41:00.151] [warning] Failed to read 'double': property 'time_range' with input '[4.925 5.409]': the data has been ignored
+[2025-01-22 16:41:00.151] [warning] Failed to read 'double': property 'time_range' with input '[4.925 5.409]': does not contain enough values (minimum: 2, got: 0): the data (all fields) have been ignored
+[2025-01-22 16:41:00.155] [error] InverseKinematicsTool Failed: Object: Cannot open file ..\..\009_Rajagopal2015_FAI.osim. It may not exist or you do not have permission to read it.
+	Thrown at Object.cpp:106 in Object().
+[2025-01-22 16:42:37.839] [warning] Failed to read 'double': property 'time_range' with input '[4.925 5.409]': the data has been ignored
+[2025-01-22 16:42:37.839] [warning] Failed to read 'double': property 'time_range' with input '[4.925 5.409]': does not contain enough values (minimum: 2, got: 0): the data (all fields) have been ignored
+[2025-01-22 16:43:37.716] [warning] Failed to read 'double': property 'time_range' with input '[4.925 5.409]': the data has been ignored
+[2025-01-22 16:43:37.716] [warning] Failed to read 'double': property 'time_range' with input '[4.925 5.409]': does not contain enough values (minimum: 2, got: 0): the data (all fields) have been ignored
+[2025-01-22 16:43:37.736] [info] Updating Model file from 30000 to latest format...
+[2025-01-22 16:43:37.803] [info] Loaded model 009 from file C:\Git\research_data\Projects\runbops_example_data\simulations\009\pre\009_Rajagopal2015_FAI.osim
+[2025-01-22 16:43:37.804] [warning] Couldn't find file 'Raja\r_pelvis.vtp'.
+[2025-01-22 16:43:37.805] [warning] Couldn't find file 'Raja\l_pelvis.vtp'.
+[2025-01-22 16:43:37.805] [warning] Couldn't find file 'Raja\sacrum.vtp'.
+[2025-01-22 16:43:37.807] [warning] Couldn't find file 'Raja\r_femur.vtp'.
+[2025-01-22 16:43:37.807] [warning] Couldn't find file 'Raja\r_tibia.vtp'.
+[2025-01-22 16:43:37.807] [warning] Couldn't find file 'Raja\r_fibula.vtp'.
+[2025-01-22 16:43:37.808] [warning] Couldn't find file 'Raja\r_patella.vtp'.
+[2025-01-22 16:43:37.808] [warning] Couldn't find file 'Raja\r_talus.vtp'.
+[2025-01-22 16:43:37.809] [warning] Couldn't find file 'Raja\r_foot.vtp'.
+[2025-01-22 16:43:37.809] [warning] Couldn't find file 'Raja\r_bofoot.vtp'.
+[2025-01-22 16:43:37.809] [warning] Couldn't find file 'Raja\l_femur.vtp'.
+[2025-01-22 16:43:37.810] [warning] Couldn't find file 'Raja\l_tibia.vtp'.
+[2025-01-22 16:43:37.810] [warning] Couldn't find file 'Raja\l_fibula.vtp'.
+[2025-01-22 16:43:37.811] [warning] Couldn't find file 'Raja\l_patella.vtp'.
+[2025-01-22 16:43:37.811] [warning] Couldn't find file 'Raja\l_talus.vtp'.
+[2025-01-22 16:43:37.811] [warning] Couldn't find file 'Raja\l_foot.vtp'.
+[2025-01-22 16:43:37.812] [warning] Couldn't find file 'Raja\l_bofoot.vtp'.
+[2025-01-22 16:43:37.812] [warning] Couldn't find file 'Raja\hat_spine.vtp'.
+[2025-01-22 16:43:37.813] [warning] Couldn't find file 'Raja\hat_jaw.vtp'.
+[2025-01-22 16:43:37.813] [warning] Couldn't find file 'Raja\hat_skull.vtp'.
+[2025-01-22 16:43:37.813] [warning] Couldn't find file 'Raja\hat_ribs_scap.vtp'.
+[2025-01-22 16:43:37.813] [warning] Couldn't find file 'Raja\humerus_rv.vtp'.
+[2025-01-22 16:43:37.814] [warning] Couldn't find file 'Raja\ulna_rv.vtp'.
+[2025-01-22 16:43:37.814] [warning] Couldn't find file 'Raja\radius_rv.vtp'.
+[2025-01-22 16:43:37.814] [warning] Couldn't find file 'Raja\pisiform_rvs.vtp'.
+[2025-01-22 16:43:37.814] [warning] Couldn't find file 'Raja\lunate_rvs.vtp'.
+[2025-01-22 16:43:37.815] [warning] Couldn't find file 'Raja\scaphoid_rvs.vtp'.
+[2025-01-22 16:43:37.815] [warning] Couldn't find file 'Raja\triquetrum_rvs.vtp'.
+[2025-01-22 16:43:37.815] [warning] Couldn't find file 'Raja\hamate_rvs.vtp'.
+[2025-01-22 16:43:37.816] [warning] Couldn't find file 'Raja\capitate_rvs.vtp'.
+[2025-01-22 16:43:37.816] [warning] Couldn't find file 'Raja\trapezoid_rvs.vtp'.
+[2025-01-22 16:43:37.816] [warning] Couldn't find file 'Raja\trapezium_rvs.vtp'.
+[2025-01-22 16:43:37.817] [warning] Couldn't find file 'Raja\metacarpal2_rvs.vtp'.
+[2025-01-22 16:43:37.817] [warning] Couldn't find file 'Raja\index_proximal_rvs.vtp'.
+[2025-01-22 16:43:37.818] [warning] Couldn't find file 'Raja\index_medial_rvs.vtp'.
+[2025-01-22 16:43:37.818] [warning] Couldn't find file 'Raja\index_distal_rvs.vtp'.
+[2025-01-22 16:43:37.818] [warning] Couldn't find file 'metacarpal3_rvs.vtp'.
+[2025-01-22 16:43:37.818] [warning] Couldn't find file 'Raja\middle_proximal_rvs.vtp'.
+[2025-01-22 16:43:37.819] [warning] Couldn't find file 'middle_medial_rvs.vtp'.
+[2025-01-22 16:43:37.819] [warning] Couldn't find file 'Raja\middle_distal_rvs.vtp'.
+[2025-01-22 16:43:37.819] [warning] Couldn't find file 'Raja\metacarpal4_rvs.vtp'.
+[2025-01-22 16:43:37.820] [warning] Couldn't find file 'Raja\ring_proximal_rvs.vtp'.
+[2025-01-22 16:43:37.820] [warning] Couldn't find file 'Raja\ring_medial_rvs.vtp'.
+[2025-01-22 16:43:37.820] [warning] Couldn't find file 'Raja\ring_distal_rvs.vtp'.
+[2025-01-22 16:43:37.821] [warning] Couldn't find file 'Raja\metacarpal5_rvs.vtp'.
+[2025-01-22 16:43:37.821] [warning] Couldn't find file 'Raja\little_proximal_rvs.vtp'.
+[2025-01-22 16:43:37.821] [warning] Couldn't find file 'Raja\little_medial_rvs.vtp'.
+[2025-01-22 16:43:37.821] [warning] Couldn't find file 'Raja\little_distal_rvs.vtp'.
+[2025-01-22 16:43:37.821] [warning] Couldn't find file 'Raja\metacarpal1_rvs.vtp'.
+[2025-01-22 16:43:37.822] [warning] Couldn't find file 'Raja\thumb_proximal_rvs.vtp'.
+[2025-01-22 16:43:37.822] [warning] Couldn't find file 'Raja\thumb_distal_rvs.vtp'.
+[2025-01-22 16:43:37.822] [warning] Couldn't find file 'Raja\humerus_lv.vtp'.
+[2025-01-22 16:43:37.822] [warning] Couldn't find file 'Raja\ulna_lv.vtp'.
+[2025-01-22 16:43:37.823] [warning] Couldn't find file 'Raja\radius_lv.vtp'.
+[2025-01-22 16:43:37.823] [warning] Couldn't find file 'Raja\pisiform_lvs.vtp'.
+[2025-01-22 16:43:37.823] [warning] Couldn't find file 'Raja\lunate_lvs.vtp'.
+[2025-01-22 16:43:37.823] [warning] Couldn't find file 'Raja\scaphoid_lvs.vtp'.
+[2025-01-22 16:43:37.823] [warning] Couldn't find file 'Raja\triquetrum_lvs.vtp'.
+[2025-01-22 16:43:37.824] [warning] Couldn't find file 'Raja\hamate_lvs.vtp'.
+[2025-01-22 16:43:37.824] [warning] Couldn't find file 'Raja\capitate_lvs.vtp'.
+[2025-01-22 16:43:37.824] [warning] Couldn't find file 'Raja\trapezoid_lvs.vtp'.
+[2025-01-22 16:43:37.824] [warning] Couldn't find file 'Raja\trapezium_lvs.vtp'.
+[2025-01-22 16:43:37.825] [warning] Couldn't find file 'Raja\metacarpal2_lvs.vtp'.
+[2025-01-22 16:43:37.825] [warning] Couldn't find file 'Raja\index_proximal_lvs.vtp'.
+[2025-01-22 16:43:37.825] [warning] Couldn't find file 'Raja\index_medial_lvs.vtp'.
+[2025-01-22 16:43:37.825] [warning] Couldn't find file 'Raja\index_distal_lvs.vtp'.
+[2025-01-22 16:43:37.825] [warning] Couldn't find file 'Raja\metacarpal3_lvs.vtp'.
+[2025-01-22 16:43:37.826] [warning] Couldn't find file 'Raja\middle_proximal_lvs.vtp'.
+[2025-01-22 16:43:37.826] [warning] Couldn't find file 'Raja\middle_medial_lvs.vtp'.
+[2025-01-22 16:43:37.826] [warning] Couldn't find file 'Raja\middle_distal_lvs.vtp'.
+[2025-01-22 16:43:37.826] [warning] Couldn't find file 'Raja\metacarpal4_lvs.vtp'.
+[2025-01-22 16:43:37.827] [warning] Couldn't find file 'Raja\ring_proximal_lvs.vtp'.
+[2025-01-22 16:43:37.827] [warning] Couldn't find file 'Raja\ring_medial_lvs.vtp'.
+[2025-01-22 16:43:37.827] [warning] Couldn't find file 'Raja\ring_distal_lvs.vtp'.
+[2025-01-22 16:43:37.827] [warning] Couldn't find file 'Raja\metacarpal5_lvs.vtp'.
+[2025-01-22 16:43:37.827] [warning] Couldn't find file 'Raja\little_proximal_lvs.vtp'.
+[2025-01-22 16:43:37.828] [warning] Couldn't find file 'Raja\little_medial_lvs.vtp'.
+[2025-01-22 16:43:37.828] [warning] Couldn't find file 'Raja\little_distal_lvs.vtp'.
+[2025-01-22 16:43:37.829] [warning] Couldn't find file 'Raja\metacarpal1_lvs.vtp'.
+[2025-01-22 16:43:37.829] [warning] Couldn't find file 'Raja\thumb_proximal_lvs.vtp'.
+[2025-01-22 16:43:37.829] [warning] Couldn't find file 'Raja\thumb_distal_lvs.vtp'.
+[2025-01-22 16:43:37.831] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.831] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.831] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.832] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.833] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.833] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.833] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.834] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.834] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.835] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.835] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.836] [warning] GeometryPath 'path' has subcomponents with duplicate name 'pathwrap'. The duplicate is being renamed to 'pathwrap_0'.
+[2025-01-22 16:43:37.889] [cout] [info] 
+               MODEL: 009
+         coordinates: 39
+              forces: 97
+           actuators: 97
+             muscles: 80
+            analyses: 0
+              probes: 0
+              bodies: 22
+              joints: 22
+         constraints: 2
+             markers: 67
+         controllers: 0
+  contact geometries: 0
+misc modelcomponents: 0
+[2025-01-22 16:43:37.890] [info] Running tool Run_baseline1.
+[2025-01-22 16:43:37.912] [error] InverseKinematicsTool Failed: File '.\Run_baseline1.trc' does not exist.
+	Thrown at TRCFileAdapter.cpp:47 in extendRead().

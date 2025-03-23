@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muscle Force Visualizer</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+            width: 100%; /* Make chart-row take up 100% width */
+        }
+        canvas {
+            width: 100%; /* Make canvas take up 100% width of its container */
+        }
+    </style>
+</head>
+<body>
+    <h1>Muscle Force Visualizer</h1>
+    <input type="file" id="fileInput" accept=".sto">
+    <div id="line-graph-container"></div>
+    <div id="stick-figure-container"></div>
+    <div id="spider-graph-container"></div>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const content = e.target.result;
+                    console.log(content);
+                    // Process the file content here
+                    // Assuming you have a function to process .sto content and convert to JSON
+                    processSTOContent(content);
+                };
+                reader.readAsText(file);
+            }
+        });
+
+        function processSTOContent(stoContent) {
+            // Placeholder: Replace with your actual .sto to JSON conversion logic
+            // This example assumes you have a function that takes .sto content and returns JSON
+            const jsonData = convertSTOtoJSON(stoContent);
+
+            // Now, use the fetched data to create the charts
+            createCharts(jsonData);
+        }
+
+        function convertSTOtoJSON(stoContent) {
+            return new Promise((resolve, reject) => {
+            fetch('http://localhost:5000/convert', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ stoContent: stoContent })
+            })
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(error => reject(error));
+            });
+        }
+
+        function createCharts(data) {
+            data.then(data => {
+                console.log(data);
+                const muscleForces = data.muscle_forces;
+                const time = muscleForces.time;
+                const muscleGroups = data.muscle_groups;
+
+                const lineGraphContainer = document.getElementById('line-graph-container');
+                lineGraphContainer.innerHTML = '';
+                let chartCount = 0;
+                let currentRow;
+
+                for (const groupName in muscleGroups) {
+                    const muscles = muscleGroups[groupName];
+
+                    const datasets = muscles.map(muscle => {
+                        const color = getRandomColor();
+                        return {
+                            label: muscle,
+                            data: muscleForces[muscle],
+                            backgroundColor: color + '80',
+                            borderColor: color,
+                            fill: true
+                        };
+                    });
+
+                    const canvas = document.createElement('canvas');
+
+                    if (chartCount % 3 === 0) {
+                        currentRow = document.createElement('div');
+                        currentRow.classList.add('chart-row');
+                        lineGraphContainer.appendChild(currentRow);
+                    }
+
+                    currentRow.appendChild(canvas);
+
+                    new Chart(canvas, {
+                        type: 'line',
+                        data: {
+                            labels: time,
+                            datasets: datasets
+                        },
+                        options: {
+                            scales: {
+                                y: {
+                                    beginAtZero: true
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                },
+                                title: {
+                                    display: true,
+                                    text: groupName
+                                }
+                            }
+                        }});
+                    chartCount++;
+                }}
+            );
+        }
+
+
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function getRandomColorWithOpacity(opacity) {
+            const color = getRandomColor();
+            return color.replace('#', '#' + opacity.toString(16));
+        }
+    </script>
+</body>
+</html>

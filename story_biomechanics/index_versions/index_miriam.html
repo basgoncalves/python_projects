@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muscle Force Visualizer</title>
+    <body style="background-color: #f0f0f0;">
+    <style>
+        h1 {
+            text-align: center;
+        }
+        #line-graph-container {
+            width: 100%;
+            height: 400px;
+        }
+        #stick-figure-container {
+            width: 100%;
+            height: 400px;
+        }
+        #spider-graph-container {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+    <h1> I Love Miriam </h1>
+    <div style="text-align: center; margin-top: 20px;">
+        <label for="loveSlider">Love Meter:</label>
+        <input type="range" id="loveSlider" name="loveSlider" min="0" max="10" value="5" oninput="updateLoveValue(this.value)">
+        <span id="loveValue">5</span>
+    </div>
+    <script>
+        function updateLoveValue(value) {
+            document.getElementById('loveValue').textContent = value;
+        }
+    </script>
+    </body>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Muscle Force Visualizer</h1>
+    <input type="file" id="fileInput" accept=".sto">
+    <div id="line-graph-container"></div>
+    <div id="stick-figure-container"></div>
+    <div id="spider-graph-container"></div>
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('fileInput').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const content = e.target.result;
+                    console.log(content); // Process the file content here
+                };
+                reader.readAsText(file);
+            }
+        });
+    </script>
+</body>
+</html>
